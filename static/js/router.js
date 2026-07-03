@@ -52,6 +52,44 @@
 
   function wait(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
 
+  // ── 프리페치 캐시: slug → 파싱된 문서(Promise) ──
+  //   hover/idle 시 미리 fetch해두면 실제 클릭 시 go()가 캐시를 그대로 써서 즉시 전환된다.
+  var docCache = Object.create(null);
+
+  function prefetch(slug) {
+    if (slug == null || docCache[slug]) return;
+    var file = SLUG_TO_FILE[slug];
+    if (file == null) return;
+    docCache[slug] = fetch(SITE_ROOT.href + file, { headers: { 'X-Requested-With': 'router' } })
+      .then(function (res) {
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        return res.text();
+      })
+      .then(function (html) { return new DOMParser().parseFromString(html, 'text/html'); })
+      .catch(function () { delete docCache[slug]; return null; });
+  }
+
+  // ── 페이지 안 내부 링크를 유휴 시간에 전부 프리페치 ──
+  function idlePrefetchLinks() {
+    var links = [].slice.call(document.querySelectorAll('a[href]'));
+    links.forEach(function (a) {
+      var raw = a.getAttribute('href');
+      if (!raw) return;
+      var abs;
+      try { abs = new URL(raw, document.baseURI).href; } catch (err) { return; }
+      var noHash = abs.split('#')[0];
+      if (noHash.indexOf(SITE_ROOT.href) !== 0) return;
+      var slug = slugForRel(noHash.slice(SITE_ROOT.href.length));
+      if (slug === currentSlug()) return; // 현재 페이지는 프리페치 불필요
+      prefetch(slug);
+    });
+  }
+
+  function onIdle(fn) {
+    if (window.requestIdleCallback) requestIdleCallback(fn, { timeout: 2000 });
+    else setTimeout(fn, 300);
+  }
+
   // ── <head> 갱신: title + 페이지별 스타일시트 교체 ──
   function updateHead(doc) {
     if (doc.title) document.title = doc.title;
@@ -105,14 +143,12 @@
     var file = SLUG_TO_FILE[slug];
     if (file == null) { location.href = cleanURL(slug, hash); return; }
     navigating = true;
+    prefetch(slug); // 아직 캐시에 없으면 지금 시작 (있으면 no-op)
 
-    fetch(SITE_ROOT.href + file, { headers: { 'X-Requested-With': 'router' } })
-      .then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        return res.text();
-      })
-      .then(function (html) {
-        var doc = new DOMParser().parseFromString(html, 'text/html');
+    docCache[slug]
+      .then(function (doc) {
+        if (!doc) throw new Error('prefetch failed');
+        delete docCache[slug]; // 소비 후 무효화: 재방문 시 최신 내용을 다시 받는다
         if (push) history.pushState({ slug: slug }, '', cleanURL(slug, hash));
 
         var swap = function () { apply(doc, hash); };
@@ -180,4 +216,29 @@
     var slug = currentSlug();
     if (slug !== null) go(slug, location.hash, false);
   });
+
+  // ── 호버/터치 시 프리페치: 클릭하기 전에 미리 받아둬서 클릭 순간 즉시 전환되게 ──
+  document.addEventListener('mouseover', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var raw = a.getAttribute('href');
+    if (!raw) return;
+    var abs;
+    try { abs = new URL(raw, document.baseURI).href; } catch (err) { return; }
+    var slug = slugForURL(abs.split('#')[0]);
+    if (slug !== currentSlug()) prefetch(slug);
+  }, { passive: true });
+  document.addEventListener('touchstart', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    if (!a) return;
+    var raw = a.getAttribute('href');
+    if (!raw) return;
+    var abs;
+    try { abs = new URL(raw, document.baseURI).href; } catch (err) { return; }
+    var slug = slugForURL(abs.split('#')[0]);
+    if (slug !== currentSlug()) prefetch(slug);
+  }, { passive: true });
+
+  // ── 유휴 시간에 현재 페이지에서 보이는 내부 링크 전부 프리페치 ──
+  onIdle(idlePrefetchLinks);
 })();

@@ -38,7 +38,7 @@
 
   function clamp(v, lo, hi) { return Math.min(hi, Math.max(lo, v)); }
 
-  // ── 역스케일 대상: 핀은 화면 크기 고정(z^-1), 지명 라벨은 절반만 확대(z^-0.5) ──
+  // ── 역스케일 대상: 핀은 화면 크기 고정(z^-1), 라벨·배지는 부분 확대(z^-0.5~0.65) ──
   var counterEls = [];
   [].forEach.call(svg.querySelectorAll('a.pin-link'), function (a) {
     var p = a.querySelector('.pulse');
@@ -46,6 +46,14 @@
   });
   [].forEach.call(svg.querySelectorAll('text.district, text.ref-label'), function (t) {
     counterEls.push({ el: t, ax: +t.getAttribute('x'), ay: +t.getAttribute('y'), pow: 0.5 });
+  });
+  [].forEach.call(svg.querySelectorAll('text.ic-label, text.road-name'), function (t) {
+    counterEls.push({ el: t, ax: +t.getAttribute('x'), ay: +t.getAttribute('y'), pow: 0.6 });
+  });
+  // 도로 번호 배지: 앵커를 data-cs="x y"로 명시 (자식들이 절대좌표라 라벨과 같은 공식 사용)
+  [].forEach.call(svg.querySelectorAll('g.badge[data-cs]'), function (g) {
+    var p = g.getAttribute('data-cs').split(' ');
+    counterEls.push({ el: g, ax: +p[0], ay: +p[1], pow: 0.65 });
   });
   function applyCounterScale() {
     counterEls.forEach(function (c) {

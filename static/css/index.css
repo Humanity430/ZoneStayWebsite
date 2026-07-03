@@ -129,14 +129,30 @@ main { flex: 1; min-height: 0; padding: 24px; }
 .map-legend .dot.teal { background: var(--teal); }
 
 /* SVG 요소 스타일 */
-.sea      { fill: var(--sea-lt); }
+.landbase { fill: var(--land-lt); }
+.sea      { fill: var(--sea-lt); stroke: #CFE0EA; stroke-width: 1; }
 .land     { fill: var(--land-lt); stroke: #D4D7CE; stroke-width: 1.2; }
+.urban    { fill: url(#city); opacity: .55; }
+.urban.songdo   { fill: url(#city-songdo); }
+.urban.industry { fill: url(#industry); opacity: .7; }
 .canal    { fill: none; stroke: #C7DAE5; stroke-width: 4; stroke-linecap: round; }
+.route    { fill: none; stroke: #BCD1DF; stroke-width: 1.4; stroke-dasharray: 3 5; }
 .green    { fill: #E2ECD7; }
 .hwy      { fill: none; stroke: #E7C28D; stroke-width: 4; stroke-linecap: round; }
 .rd       { fill: none; stroke: #EEDDBB; stroke-width: 3; stroke-linecap: round; }
-.district { fill: #CBC4B2; font-size: 19px; font-weight: 800; letter-spacing: .1em; }
-.ref-label { fill: var(--muted-lt); font-size: 12px; font-weight: 600; }
+.bldg     { fill: #8C97A3; }
+.district { fill: #C9C1AE; font-size: 19px; font-weight: 800; letter-spacing: .1em;
+            paint-order: stroke; stroke: rgba(250,248,243,.75); stroke-width: 3; }
+.ref-label { fill: var(--muted-lt); font-size: 12px; font-weight: 600;
+             paint-order: stroke; stroke: rgba(250,248,243,.8); stroke-width: 3; }
+.ic-label  { fill: #A39B89; font-size: 9.5px; font-weight: 600;
+             paint-order: stroke; stroke: rgba(250,248,243,.85); stroke-width: 2.5; }
+.road-name { fill: #C08A35; font-size: 10px; font-weight: 700;
+             paint-order: stroke; stroke: rgba(250,248,243,.85); stroke-width: 2.5; }
+.badge circle, .badge rect { fill: #4A79D8; }
+.badge.badge-y rect { fill: #F5D04E; stroke: #D9B93C; stroke-width: .8; }
+.badge text { fill: #FFFFFF; font-size: 10px; font-weight: 800; text-anchor: middle; letter-spacing: 0; }
+.badge.badge-y text { fill: #57430A; font-size: 9px; }
 
 /* 지점 핀 — 인천: 다크+골드 / 시흥: 라이트+틸 */
 .pin { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .2s ease; }

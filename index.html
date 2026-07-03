@@ -32,95 +32,127 @@
         <p class="lede">지도의 핀 또는 지점 목록을 선택하면 상세 페이지로 이동합니다.</p>
       </div>
 
-      <!-- SVG 약식 지도: 인천 연안 · 송도 · 시흥 월곶 (실제 지형 기반) -->
+      <!-- SVG 약식 지도: 인천 연안 · 송도 · 시흥 월곶 일대 (map/naver_map.png 실측 재투영)
+           world 좌표계 1430×895 — 원본 지도 지물 위치를 fraction으로 옮긴 값. viewBox(1000×620)는
+           world를 들여다보는 "창"이고 #map-world 의 translate가 카메라. 초기 카메라는 두 지점 핀이
+           창의 약 34%/66% 지점에 오도록 오른쪽으로 팬해 둔다. 끌어서 이동: static/js/map-pan.js
+           좌표 산출·배치 규칙: docs/map-design-principles.md -->
       <div class="map-wrap">
         <svg viewBox="0 0 1000 620" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="map-title map-desc">
           <title id="map-title">존스테이 지점 위치 약도</title>
-          <desc id="map-desc">인천 연안과 송도, 시흥 월곶 일대를 표현한 약식 지도. 미추홀구의 인천점과 월곶 갯골 동쪽의 시흥점(모두 운영 중) 위치를 표시.</desc>
+          <desc id="map-desc">인천 연안과 송도, 시흥 월곶 일대를 표현한 약식 지도. 미추홀구의 인천점과 월곶포구 앞 시흥점(모두 운영 중) 위치를 표시. 지도를 끌어 주변 지역을 볼 수 있으며, 같은 내용이 지점 목록으로도 제공됩니다.</desc>
 
-          <!-- 바다 (서해) -->
-          <rect class="sea" x="0" y="0" width="1000" height="620"/>
+          <g id="map-world" transform="translate(-245 -164)">
+            <!-- 바다 (경기만) -->
+            <rect class="sea" x="0" y="0" width="1430" height="895"/>
 
-          <!-- 영종도 자락 (좌상단) -->
-          <path class="land" d="M0,0 L235,0 C205,26 150,44 95,40 C55,37 20,48 0,42 Z"/>
+            <!-- 영종도 자락 (좌상단) · 물치도 -->
+            <path class="land" d="M0,0 L240,0 C226,28 184,52 132,58 C88,64 40,70 0,66 Z"/>
+            <ellipse class="land" cx="348" cy="24" rx="10" ry="5"/>
 
-          <!-- 본토: 인천 연안 → 송도 매립지 → 남동·시흥 -->
-          <path class="land" d="M340,0
-            C330,30 322,50 298,64
-            C286,74 290,90 288,106
-            L290,192
-            C294,228 312,252 306,290
-            C302,316 320,330 332,342
-            L400,356 L392,402 L344,416 L330,470 L352,506 L338,552 L372,580 L382,620
-            L1000,620 L1000,0 Z"/>
+            <!-- 본토: 제물포 연안 → 인천항 → 송도 매립지 → 인천신항 → 남동·시흥 -->
+            <path class="land" d="M400,0
+              C388,45 380,85 370,120
+              C362,155 352,195 346,240
+              C342,262 330,268 315,278
+              C302,288 300,300 310,310
+              C322,320 338,330 344,352
+              C352,390 350,425 356,455
+              L384,555
+              C390,635 392,705 396,775
+              L400,800 L452,838 L505,862 L560,882 L583,895
+              L1430,895 L1430,0 Z"/>
 
-          <!-- 인천항 부두 (연안·국제여객터미널) -->
-          <path class="land" d="M289,148 h-40 v7 h40 Z"/>
-          <path class="land" d="M289,168 h-47 v7 h47 Z"/>
-          <path class="land" d="M290,188 h-38 v7 h38 Z"/>
-          <path class="land" d="M306,278 h-31 v8 h31 Z"/>
+            <!-- 인천항 부두 (연안·국제여객터미널) -->
+            <path class="land" d="M346,158 h-32 v6 h32 Z"/>
+            <path class="land" d="M347,178 h-40 v6 h40 Z"/>
+            <path class="land" d="M348,198 h-30 v6 h30 Z"/>
+            <path class="land" d="M354,300 h-26 v7 h26 Z"/>
 
-          <!-- 월미도 · 소월미도 -->
-          <ellipse class="land" cx="272" cy="68"  rx="15" ry="10"/>
-          <ellipse class="land" cx="260" cy="120" rx="8"  ry="5.5"/>
+            <!-- 월미도 · 소월미도 -->
+            <ellipse class="land" cx="318" cy="148" rx="14" ry="9"/>
+            <ellipse class="land" cx="299" cy="212" rx="7"  ry="5"/>
 
-          <!-- 월곶 갯골 (시흥 쪽 물길) -->
-          <path class="sea" d="M700,620 C707,540 716,480 728,450 C731,443 737,443 740,450 C748,480 752,545 755,620 Z"/>
-          <path class="canal" d="M734,446 C738,400 731,360 737,315 C741,290 736,265 731,240" stroke-width="3"/>
+            <!-- 송도만: 송도·인천신항과 오이도 사이 바다 — 북동쪽 월곶 어귀로 좁아진다 -->
+            <path class="sea" d="M576,895
+              C586,800 610,672 646,610
+              C712,600 800,600 868,606
+              L879,617
+              C853,652 807,706 757,772
+              C728,812 700,856 686,895 Z"/>
+            <!-- 오이도 (만 동안의 돌출부) -->
+            <ellipse class="land" cx="694" cy="858" rx="15" ry="8"/>
 
-          <!-- 송도 수로 -->
-          <path class="canal" d="M380,415 C420,440 445,458 450,480 C456,504 450,548 454,584"/>
+            <!-- 물길: 소래 갯골(월곶 북쪽) · 승기천 · 송도 수로 · 보통천 -->
+            <path class="canal" d="M880,610 C886,565 879,522 884,478 C887,452 883,430 880,412" stroke-width="3"/>
+            <path class="canal" d="M746,408 C740,470 728,535 704,596" stroke-width="3"/>
+            <path class="canal" d="M604,648 C618,678 628,708 630,740 C631,762 629,782 631,800"/>
+            <path class="canal" d="M1085,515 C1035,555 975,590 900,612" stroke-width="2.5"/>
 
-          <!-- 녹지: 문학산 · 소래산 · 공원 -->
-          <ellipse class="green" cx="580" cy="300" rx="26" ry="13"/>
-          <ellipse class="green" cx="925" cy="168" rx="22" ry="12"/>
-          <ellipse class="green" cx="620" cy="70"  rx="28" ry="12"/>
+            <!-- 녹지: 문학산 · 소래산 · 부천 방면 구릉 -->
+            <ellipse class="green" cx="658"  cy="414" rx="27" ry="13"/>
+            <ellipse class="green" cx="1064" cy="276" rx="24" ry="13"/>
+            <ellipse class="green" cx="1250" cy="45"  rx="24" ry="10"/>
 
-          <!-- 도로: 해안 간선(77) · 인천대교—제2경인 · 동측 남북축 -->
-          <path class="rd"  d="M318,0 C306,70 300,150 310,225 C318,285 338,320 372,355 C410,395 462,420 532,442 C600,470 660,500 720,540 C760,565 820,585 900,600 L1000,612"/>
-          <path class="hwy" d="M0,108 C120,175 250,265 350,335 C395,367 440,376 505,372 C580,368 640,356 705,350 C800,342 900,336 1000,332"/>
-          <path class="hwy" d="M784,0 C772,120 756,300 744,390 C738,428 742,452 756,478 C778,518 830,552 890,572 C925,584 965,592 1000,596" stroke-width="3.5"/>
+            <!-- 도로: 경인로(42) · 인천대교—제2경인(110) · 해안 77 · 동측 남북축(39) · 제3경인 -->
+            <path class="rd"  d="M443,343 C560,318 700,300 800,288 C900,277 1100,252 1230,236 C1300,227 1370,221 1430,216"/>
+            <path class="hwy" d="M0,357 C150,393 330,452 443,488 C540,458 700,405 790,376 C880,360 1000,368 1080,374 C1200,382 1320,379 1430,376"/>
+            <path class="rd"  d="M445,0 C436,90 441,185 455,272 C463,338 452,398 468,446 C492,508 526,532 556,550 C606,580 630,594 650,608 C712,662 782,712 834,754 C862,777 880,795 894,815 C905,840 913,868 918,895"/>
+            <path class="hwy" d="M937,0 C956,115 1006,248 1038,335 C1062,430 1042,560 1024,660 C1016,722 1032,790 1062,850 C1068,865 1072,880 1075,895" stroke-width="3.5"/>
+            <path class="hwy" d="M951,597 C982,648 1006,696 1023,740 C1140,733 1290,708 1430,686" stroke-width="3.5"/>
 
-          <!-- 지명 라벨 -->
-          <text class="district" x="620" y="172" text-anchor="middle">미추홀구</text>
-          <text class="district" x="822" y="266" text-anchor="middle">남동구</text>
-          <text class="district" x="462" y="432" text-anchor="middle">연수구</text>
-          <text class="ref-label" x="240" y="222" text-anchor="middle">인천항</text>
-          <text class="ref-label" x="400" y="560" text-anchor="middle">송도</text>
-          <text class="ref-label" x="580" y="334" text-anchor="middle">문학산</text>
-          <text class="ref-label" x="925" y="200" text-anchor="middle">소래산</text>
-          <text class="ref-label" x="152" y="160" text-anchor="middle">인천대교</text>
+            <!-- 지명 라벨 -->
+            <text class="district" x="585"  y="222" text-anchor="middle">미추홀구</text>
+            <text class="district" x="852"  y="395" text-anchor="middle">남동구</text>
+            <text class="district" x="498"  y="588" text-anchor="middle">연수구</text>
+            <text class="district" x="830"  y="48"  text-anchor="middle">부평구</text>
+            <text class="district" x="1120" y="610" text-anchor="middle">시흥시</text>
+            <text class="ref-label" x="272"  y="210" text-anchor="middle">인천항</text>
+            <text class="ref-label" x="318"  y="128" text-anchor="middle">월미도</text>
+            <text class="ref-label" x="130"  y="362" text-anchor="middle">인천대교</text>
+            <text class="ref-label" x="110"  y="34"  text-anchor="middle">영종도</text>
+            <text class="ref-label" x="516"  y="668" text-anchor="middle">송도</text>
+            <text class="ref-label" x="728"  y="880" text-anchor="middle">오이도</text>
+            <text class="ref-label" x="922"  y="420" text-anchor="middle">소래포구</text>
+            <text class="ref-label" x="658"  y="446" text-anchor="middle">문학산</text>
+            <text class="ref-label" x="1064" y="308" text-anchor="middle">소래산</text>
 
-          <!-- ── 인천점 핀 (미추홀구 · 운영 중, 다크+골드) ── -->
-          <a class="pin-link" href="incheon/" aria-label="인천점 상세 페이지로 이동">
-            <circle class="pulse" cx="531" cy="213" r="14"/>
-            <g class="pin">
-              <path class="pin-body" d="M531,119
-                c-19.9,0 -36,16.1 -36,36
-                c0,27 36,58 36,58
-                s36,-31 36,-58
-                c0,-19.9 -16.1,-36 -36,-36 Z"/>
-              <circle class="pin-core" cx="531" cy="155" r="13"/>
-            </g>
-            <text class="pin-label" x="531" y="248" text-anchor="middle">인천점</text>
-            <text class="pin-sub"   x="531" y="269" text-anchor="middle">NOW OPEN</text>
-          </a>
+            <!-- ── 인천점 핀 (미추홀구 · 운영 중, 다크+골드) ── -->
+            <a class="pin-link" href="incheon/" aria-label="인천점 상세 페이지로 이동">
+              <circle class="pulse" cx="612" cy="334" r="14"/>
+              <g class="pin">
+                <path class="pin-body" d="M612,240
+                  c-19.9,0 -36,16.1 -36,36
+                  c0,27 36,58 36,58
+                  s36,-31 36,-58
+                  c0,-19.9 -16.1,-36 -36,-36 Z"/>
+                <circle class="pin-core" cx="612" cy="276" r="13"/>
+              </g>
+              <text class="pin-label" x="612" y="369" text-anchor="middle">인천점</text>
+              <text class="pin-sub"   x="612" y="390" text-anchor="middle">NOW OPEN</text>
+            </a>
 
-          <!-- ── 시흥점 핀 (월곶 · 운영 중, 라이트+틸) ── -->
-          <a class="pin-link" href="siheung/" aria-label="시흥점 상세 페이지로 이동">
-            <circle class="pulse day" cx="798" cy="462" r="12"/>
-            <g class="pin">
-              <path class="pin-body day" d="M798,384
-                c-16.6,0 -30,13.4 -30,30
-                c0,22.5 30,48 30,48
-                s30,-25.5 30,-48
-                c0,-16.6 -13.4,-30 -30,-30 Z"/>
-              <circle class="pin-core day" cx="798" cy="414" r="10.5"/>
-            </g>
-            <text class="pin-label" x="798" y="489" text-anchor="middle">시흥점</text>
-            <text class="pin-sub day" x="798" y="509" text-anchor="middle">NOW OPEN</text>
-          </a>
+            <!-- ── 시흥점 핀 (월곶포구 앞 · 운영 중, 라이트+틸) ── -->
+            <a class="pin-link" href="siheung/" aria-label="시흥점 상세 페이지로 이동">
+              <circle class="pulse day" cx="878" cy="614" r="12"/>
+              <g class="pin">
+                <path class="pin-body day" d="M878,536
+                  c-16.6,0 -30,13.4 -30,30
+                  c0,22.5 30,48 30,48
+                  s30,-25.5 30,-48
+                  c0,-16.6 -13.4,-30 -30,-30 Z"/>
+                <circle class="pin-core day" cx="878" cy="566" r="10.5"/>
+              </g>
+              <text class="pin-label" x="878" y="641" text-anchor="middle">시흥점</text>
+              <text class="pin-sub day" x="878" y="661" text-anchor="middle">NOW OPEN</text>
+            </a>
+          </g>
         </svg>
+        <div class="map-hint" aria-hidden="true">끌어서 이동 · 휠/버튼으로 확대</div>
+        <div class="map-zoom">
+          <button type="button" class="zoom-in" aria-label="지도 확대">+</button>
+          <button type="button" class="zoom-out" aria-label="지도 축소">−</button>
+        </div>
         <div class="map-legend">
           <span><span class="dot gold"></span>인천점 · 운영 중</span>
           <span><span class="dot teal"></span>시흥점 · 운영 중</span>
@@ -155,6 +187,9 @@
 <footer>
   Zone<span>Stay</span> · 프리미엄 코리빙 레지던스 · 인천 · 시흥
 </footer>
+
+<!-- body 안에 두어야 라우터(runScripts)가 페이지 재진입 시 다시 실행한다 -->
+<script src="static/js/map-pan.js"></script>
 
 </body>
 </html>

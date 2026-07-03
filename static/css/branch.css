@@ -189,7 +189,7 @@
   font-weight: 800; color: var(--accent);
   letter-spacing: -0.03em; margin-bottom: 6px;
 }
-.room-price span { font-size: 14px; font-weight: 400; color: var(--muted); margin-left: 4px; }
+.room-price span:not([data-price]) { font-size: 14px; font-weight: 400; color: var(--muted); margin-left: 4px; }
 .room-specs {
   display: flex; flex-wrap: wrap; gap: 8px;
   margin-bottom: 20px;

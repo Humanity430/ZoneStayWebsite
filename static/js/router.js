@@ -17,6 +17,11 @@
   // 루트 배포든 프로젝트 서브경로(/repo/)든 자동으로 맞음.
   var SITE_ROOT = new URL('../../', document.currentScript.src);
 
+  // 파비콘 href 절대화 — pushState로 URL이 바뀐 뒤 브라우저가 상대 href를
+  // 새 base 기준으로 재해석해 404를 내는 것을 방지 (head는 교체되지 않으므로)
+  var favicon = document.head.querySelector('link[rel="icon"]');
+  if (favicon) favicon.setAttribute('href', favicon.href);
+
   // 슬러그 → 실제 파일(사이트 루트 기준 상대경로)
   var SLUG_TO_FILE = {
     '':        'index.html',
@@ -60,12 +65,14 @@
     if (slug == null || docCache[slug]) return;
     var file = SLUG_TO_FILE[slug];
     if (file == null) return;
-    docCache[slug] = fetch(SITE_ROOT.href + file, { headers: { 'X-Requested-With': 'router' } })
+    var docURL = SITE_ROOT.href + file; // 이 문서의 절대 URL — 상대경로 해석 기준
+    docCache[slug] = fetch(docURL, { headers: { 'X-Requested-With': 'router' } })
       .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return res.text();
       })
       .then(function (html) { return new DOMParser().parseFromString(html, 'text/html'); })
+      .then(function (doc) { return warmStyles(doc, docURL); }) // 이 페이지 CSS를 미리 데워둔다
       .catch(function () { delete docCache[slug]; return null; });
   }
 
@@ -90,25 +97,59 @@
     else setTimeout(fn, 300);
   }
 
-  // ── <head> 갱신: title + 페이지별 스타일시트 교체 ──
-  function updateHead(doc) {
-    if (doc.title) document.title = doc.title;
-    var newHrefs = [].slice.call(doc.querySelectorAll('head link[rel="stylesheet"]'))
+  // ── 새 페이지 스타일시트를 "먼저" 로드 (FOUC 방지 핵심) ──
+  //   기존 head에 없는 <link rel=stylesheet>만 추가하고, 전부 load될 때까지 기다린다.
+  //   body 교체는 CSS가 적용된 뒤에 일어나므로 "스타일 없는 순간"이 생기지 않는다.
+  //   반환: 새 CSS가 모두 로드되면 resolve되는 Promise.
+  function ensureStyles(doc) {
+    var curHrefs = [].slice.call(document.head.querySelectorAll('link[rel="stylesheet"]'))
       .map(function (l) { return l.getAttribute('href'); });
-    var cur = [].slice.call(document.head.querySelectorAll('link[rel="stylesheet"]'));
-    // 새 페이지에만 있는 CSS 추가
-    newHrefs.forEach(function (href) {
-      if (!cur.some(function (l) { return l.getAttribute('href') === href; })) {
-        var link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.setAttribute('href', href);
-        document.head.appendChild(link);
-      }
+    var pending = [];
+    [].slice.call(doc.querySelectorAll('head link[rel="stylesheet"]')).forEach(function (l) {
+      var href = l.getAttribute('href');
+      if (!href || curHrefs.indexOf(href) !== -1) return; // 이미 로드됨(공통·폰트 등)
+      var link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.setAttribute('href', href);
+      pending.push(new Promise(function (resolve) {
+        link.onload = link.onerror = resolve;
+        setTimeout(resolve, 1500); // 느리거나 실패해도 내비가 멈추지 않게 안전장치
+      }));
+      document.head.appendChild(link);
     });
-    // 새 페이지에 없는 CSS 제거 (폰트 등 공통은 양쪽에 다 있어 유지됨)
-    cur.forEach(function (l) {
-      if (newHrefs.indexOf(l.getAttribute('href')) === -1) l.remove();
+    return Promise.all(pending);
+  }
+
+  // ── 이전 페이지 전용 스타일시트 제거 ──
+  //   반드시 body 교체 "뒤"에 호출해야 한다(먼저 지우면 옛 화면이 잠깐 깨진다).
+  function pruneStyles(doc) {
+    var keep = [].slice.call(doc.querySelectorAll('head link[rel="stylesheet"]'))
+      .map(function (l) { return l.getAttribute('href'); });
+    [].slice.call(document.head.querySelectorAll('link[rel="stylesheet"]')).forEach(function (l) {
+      if (keep.indexOf(l.getAttribute('href')) === -1) l.remove();
     });
+  }
+
+  // ── 프리페치 시 CSS도 캐시에 미리 데워두기 → 첫 클릭에서도 ensureStyles가 즉시 resolve ──
+  //   중요: 상대 href를 "그 문서의 URL(baseURL)" 기준으로 절대화한다.
+  //   홈은 static/…, 지점은 ../static/… 을 쓰므로, 현재 페이지 위치로 해석하면 404가 난다.
+  var warmed = Object.create(null);
+  function warmStyles(doc, baseURL) {
+    if (!doc) return doc;
+    [].slice.call(doc.querySelectorAll('head link[rel="stylesheet"]')).forEach(function (l) {
+      var raw = l.getAttribute('href');
+      if (!raw) return;
+      var abs;
+      try { abs = new URL(raw, baseURL).href; } catch (e) { return; }
+      if (warmed[abs]) return;
+      warmed[abs] = true;
+      var link = document.createElement('link');
+      link.rel = 'prefetch';
+      link.as = 'style';
+      link.href = abs; // 절대 URL → 현재 페이지 위치와 무관하게 정확
+      document.head.appendChild(link);
+    });
+    return doc;
   }
 
   // ── 교체된 body 안의 <script> 재실행 (innerHTML은 스크립트를 실행 안 함) ──
@@ -129,8 +170,9 @@
   //   pushState 로 URL(=baseURI)이 먼저 바뀌므로, 주입되는 ../static/·../dorm-images/
   //   같은 상대경로가 새 위치 기준으로 올바르게 해석된다.
   function apply(doc, hash) {
-    updateHead(doc);
+    if (doc.title) document.title = doc.title;
     document.body.innerHTML = doc.body.innerHTML;
+    pruneStyles(doc); // 새 CSS는 ensureStyles로 이미 로드됨 → 이제 옛 CSS 정리
     runScripts();
     var target = hash && document.getElementById(hash.slice(1));
     if (target) target.scrollIntoView();
@@ -151,19 +193,22 @@
         delete docCache[slug]; // 소비 후 무효화: 재방문 시 최신 내용을 다시 받는다
         if (push) history.pushState({ slug: slug }, '', cleanURL(slug, hash));
 
-        var swap = function () { apply(doc, hash); };
+        // 새 페이지 CSS를 먼저 로드한 뒤에만 body를 교체 → FOUC(스타일 깨짐) 없음
+        return ensureStyles(doc).then(function () {
+          var swap = function () { apply(doc, hash); };
 
-        if (document.startViewTransition && !reduceMotion) {
-          return document.startViewTransition(swap).finished.catch(function () {});
-        }
-        if (reduceMotion) { swap(); return; }
-        // 폴백: 페이드아웃 → 교체 → 페이드인
-        document.body.classList.add('rt-fade');
-        return wait(180).then(function () {
-          swap();
-          requestAnimationFrame(function () {
+          if (document.startViewTransition && !reduceMotion) {
+            return document.startViewTransition(swap).finished.catch(function () {});
+          }
+          if (reduceMotion) { swap(); return; }
+          // 폴백: 페이드아웃 → 교체 → 페이드인
+          document.body.classList.add('rt-fade');
+          return wait(180).then(function () {
+            swap();
             requestAnimationFrame(function () {
-              document.body.classList.remove('rt-fade');
+              requestAnimationFrame(function () {
+                document.body.classList.remove('rt-fade');
+              });
             });
           });
         });

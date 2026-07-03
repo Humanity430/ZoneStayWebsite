@@ -17,7 +17,7 @@
 <body>
 
 <!-- ── 네비게이션 ─────────────────────────────────── -->
-<nav class="nav">
+<nav class="nav" data-branch="siheung">
   <div class="nav-inner">
     <div class="nav-left">
       <a href="../" class="nav-logo" title="지점 선택으로 이동">Zone<span>Stay</span></a>
@@ -29,7 +29,7 @@
       <li><a href="#location">위치</a></li>
       <li><a href="#inquiry">문의</a></li>
     </ul>
-    <button class="nav-cta" onclick="document.getElementById('inquiry').scrollIntoView({behavior:'smooth'})">사전 문의</button>
+    <button class="nav-cta" data-kakao="siheung" onclick="document.getElementById('inquiry').scrollIntoView({behavior:'smooth'})">사전 문의</button>
     <button class="nav-ham" aria-label="메뉴 열기" onclick="document.getElementById('mobileNav').classList.add('open')">
       <span></span><span></span><span></span>
     </button>
@@ -40,7 +40,7 @@
   <a href="#rooms" onclick="document.getElementById('mobileNav').classList.remove('open')">객실</a>
   <a href="#facilities" onclick="document.getElementById('mobileNav').classList.remove('open')">시설</a>
   <a href="#location" onclick="document.getElementById('mobileNav').classList.remove('open')">위치</a>
-  <a href="#inquiry" class="m-cta" onclick="document.getElementById('mobileNav').classList.remove('open')">사전 문의</a>
+  <a href="#inquiry" class="m-cta" data-kakao="siheung" onclick="document.getElementById('mobileNav').classList.remove('open')">사전 문의</a>
 </div>
 
 <!-- ── 히어로 ─────────────────────────────────────── -->
@@ -53,11 +53,11 @@
     <h1 class="hero-h1">창을 열면,<br><em>월곶 바다.</em></h1>
     <p class="hero-sub">월곶포구 수변공원 바로 앞 원룸텔.<br>오션뷰 6개 호실 · 대부분 호실 개인 세탁기 · 전 객실 개인 화장실.</p>
     <div class="hero-price">
-      <span class="hero-price-num">월 40만원부터</span>
+      <span class="hero-price-num" data-price="heroFrom">월 40만원부터</span>
       <span class="hero-price-label">보증금·관리비는 상담 시 총액 기준 안내</span>
     </div>
     <div class="hero-actions">
-      <a href="#inquiry" class="btn-primary">입주 사전 문의</a>
+      <a href="#inquiry" class="btn-primary" data-kakao="siheung">입주 사전 문의</a>
       <a href="#rooms" class="btn-secondary">객실 둘러보기 →</a>
     </div>
   </div>
@@ -141,7 +141,7 @@
           <span class="room-badge">6개 호실 · 404–409호 · 주력</span>
           <p class="room-type">Ocean View</p>
           <h3 class="room-name">오션뷰</h3>
-          <div class="room-price">월 50만원<span>/ 보증금 상담 안내</span></div>
+          <div class="room-price"><span data-price="ocean.price">월 55만원</span><span>/ 보증금 상담 안내</span></div>
           <div class="room-specs">
             <span class="spec-chip">바다·갯벌 전망</span>
             <span class="spec-chip">개인 욕실·샤워</span>
@@ -167,7 +167,7 @@
           <span class="room-badge">2개 호실 · 401 · 416호</span>
           <p class="room-type">1.5 Room Suite</p>
           <h3 class="room-name">1.5룸 큰방</h3>
-          <div class="room-price">월 65만원<span>/ 보증금 상담 안내</span></div>
+          <div class="room-price"><span data-price="suite.price">월 65만원</span><span>/ 보증금 상담 안내</span></div>
           <div class="room-specs">
             <span class="spec-chip">침실 분리형</span>
             <span class="spec-chip">격자 미닫이문</span>
@@ -193,7 +193,7 @@
           <span class="room-badge">2개 호실 · 412 · 414호</span>
           <p class="room-type">Twin Space</p>
           <h3 class="room-name">트윈 스페이스 <small style="font-size:14px;font-weight:600;color:var(--muted)">— 작은방 2개 합침</small></h3>
-          <div class="room-price">월 55만원<span>/ 보증금 상담 안내</span></div>
+          <div class="room-price"><span data-price="twin.price">월 55만원</span><span>/ 보증금 상담 안내</span></div>
           <div class="room-specs">
             <span class="spec-chip">바다·수변 통창</span>
             <span class="spec-chip">더블 사이즈 평면</span>
@@ -219,7 +219,7 @@
           <span class="room-badge">5개 호실 · 402 · 403 · 410 · 415 · 417호</span>
           <p class="room-type">Value Room</p>
           <h3 class="room-name">실속형</h3>
-          <div class="room-price">월 40~45만원<span>/ 보증금 상담 안내</span></div>
+          <div class="room-price"><span data-price="value.price">월 40~45만원</span><span>/ 보증금 상담 안내</span></div>
           <div class="room-specs">
             <span class="spec-chip">도심·부분 오션뷰 / 내창</span>
             <span class="spec-chip">개인 욕실·샤워</span>
@@ -227,8 +227,8 @@
           </div>
           <p class="room-fit">월 고정비를 가장 낮추면서 개인 욕실과 풀옵션은 그대로. 첫 독립이나 단기 거주에 부담 없는 시작점입니다.</p>
           <ul class="room-points">
-            <li>45만원: 402·403호 (세탁기 포함, 큰 창 — 사진: 403호)</li>
-            <li>40만원: 410호(바다 보임)·415호(바다 살짝) — 시흥점 최저가 / 417호 — 내창·세탁기 포함</li>
+            <li><span data-price="value.high">45만원</span>: 402·403호 (세탁기 포함, 큰 창 — 사진: 403호)</li>
+            <li><span data-price="value.low">40만원</span>: 410호(바다 보임)·415호(바다 살짝) — 시흥점 최저가 / 417호 — 내창·세탁기 포함</li>
             <li>모든 호실 냉장고·TV·에어컨·책상 기본</li>
           </ul>
           <a href="#inquiry" class="room-cta">입주 가능 여부 문의 →</a>
@@ -436,11 +436,13 @@
       <li>월세·보증금 총액 확인</li>
     </ul>
     <div class="inquiry-btns">
-      <a href="#inquiry" class="btn-kakao">💬 카카오톡으로 문의</a>
-      <a href="tel:0502-1929-2939" class="btn-line">📞 전화 0502-1929-2939</a>
+      <a href="#inquiry" class="btn-kakao" data-kakao="siheung">💬 카카오톡으로 문의</a>
+      <a href="tel:0502-1929-2939" class="btn-line" data-phone-link>📞 전화 <span data-phone>0502-1929-2939</span></a>
+      <!-- 인스타그램 준비 중 — 오픈 시 아래 주석 해제
       <a href="https://www.instagram.com/zonestay.kr/" target="_blank" class="btn-line">📷 인스타그램 DM</a>
+      -->
     </div>
-    <p class="inquiry-addr">경기도 시흥시 월곶동 · 존스테이 원룸텔 4층 · 월곶포구 수변공원 앞</p>
+    <p class="inquiry-addr"><span data-address>경기도 시흥시 월곶동 존스테이 원룸텔 4층</span> · 월곶포구 수변공원 앞</p>
   </div>
 </section>
 
@@ -449,7 +451,7 @@
   <div class="footer-inner">
     <div>
       <div class="footer-brand">Zone<span>Stay</span> 시흥점</div>
-      <div class="footer-meta" style="margin-top:8px;">경기도 시흥시 월곶동 존스테이 원룸텔 4층 · T. 0502-1929-2939 · @zonestay.kr</div>
+      <div class="footer-meta" style="margin-top:8px;"><span data-address>경기도 시흥시 월곶동 존스테이 원룸텔 4층</span> · T. <span data-phone>0502-1929-2939</span><!-- 인스타 준비 중: · @zonestay.kr --></div>
     </div>
     <div class="footer-links">
       <a href="#rooms">객실</a>
@@ -462,10 +464,11 @@
 </footer>
 
 <!-- ── 플로팅 버튼 ────────────────────────────────── -->
-<button class="floating" onclick="document.getElementById('inquiry').scrollIntoView({behavior:'smooth'})">
+<button class="floating" data-kakao="siheung" onclick="document.getElementById('inquiry').scrollIntoView({behavior:'smooth'})">
   💬 사전 문의
 </button>
 
+<script src="../static/js/config.js"></script>
 <script src="../static/js/page.js"></script>
 </body>
 </html>

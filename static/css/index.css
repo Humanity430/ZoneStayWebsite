@@ -1,0 +1,189 @@
+/* ── 디자인 토큰 ─────────────────────────────────
+   페이지 베이스는 라이트(시흥 분위기),
+   인천점 카드/핀만 다크+골드(incheon.html 테마)를 유지 */
+:root {
+  /* 라이트 베이스 */
+  --paper:      #FAF8F3;
+  --card-lt:    #FFFFFF;
+  --line:       #E8E2D6;
+  --ink:        #201D18;
+  --muted-lt:   #8A8272;
+  --sea-lt:     #DDE9F0;
+  --land-lt:    #F6F3EA;
+
+  /* 인천 다크 테마 (incheon.html과 동일 계열) */
+  --night:      #12100C;
+  --night-line: #2E2920;
+  --night-text: #F0EDE8;
+  --night-mut:  #9C937F;
+  --gold:       #C4922A;
+  --gold-br:    #D4A83C;
+  --gold-deep:  #8F6A1A;   /* 라이트 배경 위 소형 골드 텍스트용 */
+  --gold-soft:  #1A1208;
+
+  /* 시흥 라이트 악센트 (월곶 바다 톤) */
+  --teal:       #4A7D78;
+  --teal-deep:  #33635E;
+  --teal-soft:  #EAF2F0;
+
+  --radius-card: 16px;
+
+  /* 공통(common.css) 계약 변수 */
+  --nav-bg:       rgba(250,248,243,.92);
+  --nav-line:     var(--line);
+  --nav-fg:       var(--ink);
+  --nav-muted:    var(--muted-lt);
+  --nav-menu-bg:  var(--paper);
+  --brand-gold:   var(--gold-deep);
+  --accent:       var(--gold-deep);
+  --accent-br:    var(--gold);
+  --accent-shadow: none;
+}
+html { background: var(--paper); }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  height: 100svh;
+  overflow: hidden;               /* 한 화면 고정 — 좁은 화면 폴백은 하단 미디어쿼리 */
+  display: flex; flex-direction: column;
+}
+
+/* ── 메인: 좌(안내+지도) / 우(지점 리스트) ────── */
+main { flex: 1; min-height: 0; padding: 24px; }
+.inner {
+  height: 100%; max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: minmax(0, 1fr) 372px; gap: 28px;
+}
+
+.left { display: flex; flex-direction: column; min-height: 0; }
+.head { margin-bottom: 18px; }
+.eyebrow {
+  font-size: 11px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gold-deep); margin-bottom: 8px;
+}
+.title {
+  font-size: clamp(22px, 2.4vw, 28px); font-weight: 800; letter-spacing: -0.03em;
+  line-height: 1.25; display: inline;
+}
+.lede {
+  font-size: 14px; color: var(--muted-lt); line-height: 1.6;
+  word-break: keep-all; margin-top: 6px;
+}
+
+/* ── SVG 약식 지도 (인천 연안 · 송도 · 월곶) ──── */
+.map-wrap {
+  position: relative; flex: 1; min-height: 0;
+  border: 1px solid var(--line); border-radius: var(--radius-card);
+  background: var(--sea-lt);
+  box-shadow: 0 2px 16px rgba(32,29,24,.05);
+  overflow: hidden;
+}
+.map-wrap svg { display: block; width: 100%; height: 100%; }
+.map-legend {
+  position: absolute; left: 20px; bottom: 16px;
+  display: flex; gap: 18px; flex-wrap: wrap;
+  font-size: 12px; font-weight: 600; color: var(--muted-lt);
+}
+.map-legend .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+.map-legend .dot.gold { background: var(--gold); }
+.map-legend .dot.teal { background: var(--teal); }
+
+/* SVG 요소 스타일 */
+.sea      { fill: var(--sea-lt); }
+.land     { fill: var(--land-lt); stroke: #D4D7CE; stroke-width: 1.2; }
+.canal    { fill: none; stroke: #C7DAE5; stroke-width: 4; stroke-linecap: round; }
+.green    { fill: #E2ECD7; }
+.hwy      { fill: none; stroke: #E7C28D; stroke-width: 4; stroke-linecap: round; }
+.rd       { fill: none; stroke: #EEDDBB; stroke-width: 3; stroke-linecap: round; }
+.district { fill: #CBC4B2; font-size: 19px; font-weight: 800; letter-spacing: .1em; }
+.ref-label { fill: var(--muted-lt); font-size: 12px; font-weight: 600; }
+
+/* 지점 핀 — 인천: 다크+골드 / 시흥: 라이트+틸 */
+.pin { transform-box: fill-box; transform-origin: 50% 100%; transition: transform .2s ease; }
+a.pin-link { cursor: pointer; }
+a.pin-link:hover .pin,
+a.pin-link:focus-visible .pin { transform: scale(1.12) translateY(-2px); }
+a.pin-link:focus-visible { outline: none; }
+a.pin-link:focus-visible .pin-body { stroke: var(--gold-br); stroke-width: 2.5; }
+
+.pin-body   { fill: var(--night); stroke: var(--gold-deep); stroke-width: 1.5; filter: drop-shadow(0 6px 14px rgba(143,106,26,.35)); }
+.pin-core   { fill: var(--gold); }
+.pin-body.day { fill: var(--card-lt); stroke: var(--teal); stroke-width: 1.5; filter: drop-shadow(0 4px 10px rgba(74,125,120,.2)); }
+.pin-core.day { fill: var(--teal); }
+.pin-label      { font-size: 15px; font-weight: 800; fill: var(--ink); letter-spacing: -.01em; }
+.pin-sub        { font-size: 11px; font-weight: 700; letter-spacing: .04em; fill: var(--gold-deep); }
+.pin-sub.day    { fill: var(--teal-deep); }
+.pulse { fill: var(--gold); opacity: 0; transform-box: fill-box; transform-origin: 50% 100%; animation: pulse 2.6s ease-out infinite; }
+.pulse.day { fill: var(--teal); }
+@keyframes pulse {
+  0%   { opacity: .3; transform: scale(1); }
+  70%  { opacity: 0;  transform: scale(2.6); }
+  100% { opacity: 0;  transform: scale(2.6); }
+}
+@media (prefers-reduced-motion: reduce) { .pulse { animation: none; } }
+
+/* ── 지점 리스트 (우측, 자연 높이 — 하단 여백 허용) ── */
+.loc-list { display: flex; flex-direction: column; gap: 16px; min-height: 0; }
+.loc-card {
+  display: flex; flex-direction: column;
+  border-radius: var(--radius-card);
+  padding: 24px 26px 22px;
+  transition: border-color .2s, box-shadow .2s, transform .15s;
+}
+.loc-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 8px; }
+.loc-name { font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
+.loc-status {
+  font-size: 11px; font-weight: 800; letter-spacing: .05em;
+  padding: 4px 11px; border-radius: 100px; white-space: nowrap;
+}
+.loc-addr { font-size: 13px; line-height: 1.6; word-break: keep-all; margin-bottom: 16px; }
+.loc-go { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 700; }
+
+/* 인천점 — 다크 (지점 자체의 무드) */
+.loc-card.night {
+  background: var(--night);
+  border: 1px solid var(--night-line);
+  color: var(--night-text);
+}
+.loc-card.night .loc-name span { color: var(--gold); }
+.loc-card.night .loc-status { color: var(--gold); background: var(--gold-soft); border: 1px solid rgba(196,146,42,.35); }
+.loc-card.night .loc-addr { color: var(--night-mut); }
+.loc-card.night .loc-go { color: var(--gold); }
+a.loc-card.night:hover {
+  border-color: rgba(196,146,42,.55);
+  box-shadow: 0 10px 32px rgba(196,146,42,.22);
+  transform: translateY(-2px);
+}
+
+/* 시흥점 — 라이트 (밝은 무드) */
+.loc-card.day {
+  background: var(--card-lt);
+  border: 1px solid var(--line);
+}
+.loc-card.day .loc-name span { color: var(--teal-deep); }
+.loc-card.day .loc-status { color: var(--teal-deep); background: var(--teal-soft); border: 1px solid rgba(74,125,120,.3); }
+.loc-card.day .loc-addr { color: var(--muted-lt); }
+.loc-card.day .loc-go { color: var(--teal-deep); }
+a.loc-card.day:hover {
+  border-color: rgba(74,125,120,.55);
+  box-shadow: 0 10px 32px rgba(74,125,120,.18);
+  transform: translateY(-2px);
+}
+
+/* ── 푸터 ────────────────────────────────────── */
+footer {
+  flex: none;
+  border-top: 1px solid var(--line);
+  padding: 14px 24px; text-align: center;
+  font-size: 12px; color: var(--muted-lt);
+}
+footer span { color: var(--gold-deep); font-weight: 700; }
+
+/* ── 좁은 화면 폴백: 세로 스택 + 일반 스크롤 ──── */
+@media (max-width: 860px), (max-height: 600px) {
+  body { height: auto; min-height: 100svh; overflow: auto; }
+  main { padding: 32px 20px 48px; }
+  .inner { height: auto; grid-template-columns: 1fr; gap: 24px; }
+  .map-wrap { flex: none; aspect-ratio: 1000 / 620; }
+  .map-legend { position: static; padding: 12px 18px 14px; }
+}

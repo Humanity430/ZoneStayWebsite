@@ -1,24 +1,14 @@
-# ZoneStay 인천점 랜딩 페이지
+# ZoneStay Website (정적 배포)
 
-인천 주안역 도보 5분 코리빙 브랜드 **존스테이** 인천점 소개용 정적 랜딩 페이지입니다.
+존스테이 코리빙 브랜드 정적 사이트. GitHub Pages 로 서빙된다.
+작업/소스 트리는 별도이며, 이 저장소는 **배포용 정적 파일만** 담는다.
 
-## 구성
+## 구조
+- `index.html` — 홈(지점 선택 지도) → `/`
+- `incheon/index.html` — 인천점 → `/incheon/`
+- `siheung/index.html` — 시흥점 → `/siheung/`
+- `static/css`, `static/js` — 공통 스타일(테마·브랜치 레이어)·클라이언트 라우터
+- `dorm-images/` — 사진(웹 최적화본)
+- `.nojekyll` — Jekyll 처리 비활성
 
-- `index.html` — 단일 페이지 랜딩 (인라인 CSS/JS, 외부 의존성은 CDN 폰트뿐)
-- `images/` — 실내·복도·객실·주변 사진 (웹용 최적화)
-- `.nojekyll` — GitHub Pages의 Jekyll 처리 비활성화
-
-## 배포
-
-GitHub Pages(Deploy from a branch, `main` / root)로 서빙됩니다.
-
-👉 https://humanity430.github.io/ZoneStayWebsite/
-
-## 로컬 확인
-
-별도 빌드 없이 `index.html`을 브라우저로 열거나, 간단한 정적 서버로 확인할 수 있습니다.
-
-```bash
-python3 -m http.server 8000
-# → http://localhost:8000
-```
+지점을 폴더 구조로 두어 `/incheon/` 같은 clean URL 이 GitHub Pages 에서 그대로 동작한다.

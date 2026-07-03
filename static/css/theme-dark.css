@@ -1,0 +1,84 @@
+/* ═══════════════════════════════════════════════════════
+   테마 — 다크 (인천점: 야간 골드 팔레트)
+   branch.css / common.css 가 참조하는 시맨틱 토큰만 정의한다.
+   레이아웃 규칙은 없음. 새 다크 지점은 이 파일을 그대로 링크.
+   ═══════════════════════════════════════════════════════ */
+:root {
+  /* 표면 · 텍스트 */
+  --bg:        #0a0a0a;
+  --card:      #141414;
+  --surface:   #1c1c1c;
+  --line:      #282828;
+  --text:      #F0EDE8;
+  --muted:     #6a6a6a;
+  --dim:       #383838;
+  --inset:     #1c1c1c;   /* 섹션 위에 얹히는 패널·칩 표면 */
+
+  /* 액센트 */
+  --accent:          #C4922A;
+  --accent-br:       #D4A83C;
+  --accent-soft:     #1A1208;
+  --accent-line:     rgba(196,146,42,.35);
+  --accent-shadow:   0 8px 32px rgba(196,146,42,.30);
+  --accent-shadow-lg:0 12px 40px rgba(196,146,42,.4);
+  --shadow-subtle:   0 8px 24px rgba(0,0,0,.40);
+  --radius-card: 16px;
+  --radius-btn:  12px;
+  --brand-gold:  #C4922A;
+
+  /* 보조 액센트 세이지 — 배지·인라인 style="background:var(--sage)" 참조 */
+  --sage:      #8B9E8D;
+  --sage-soft: #10181A;
+
+  /* common.css 계약 변수 (내비·플로팅) */
+  --nav-bg:      rgba(10,10,10,.92);
+  --nav-line:    var(--line);
+  --nav-fg:      var(--text);
+  --nav-muted:   var(--muted);
+  --nav-menu-bg: var(--card);
+
+  /* 히어로 아이브로우 */
+  --eyebrow-fg:  #8B9E8D;
+  --eyebrow-dot: #8B9E8D;
+  --eyebrow-bd:  rgba(139,158,141,.35);
+  --eyebrow-bg:  rgba(16,24,26,.7);
+
+  /* 히어로 */
+  --hero-sub-fg:    rgba(240,237,232,.7);
+  --price-bg:       var(--accent-soft);
+  --price-bd:       rgba(196,146,42,.25);
+  --price-shadow:   none;
+  --price-label-fg: rgba(196,146,42,.6);
+
+  /* 버튼 */
+  --btn-sec-bg:       rgba(28,28,28,.8);
+  --btn-sec-hover-bd: rgba(196,146,42,.4);
+
+  /* 강점 카드 */
+  --feature-bg-hover: #222;
+  --feature-icon-bd:  rgba(196,146,42,.2);
+
+  /* 객실 */
+  --room-fit-bar: var(--line);
+
+  /* 위치 안내 배너 */
+  --notice-bd: rgba(196,146,42,.15);
+  --notice-fg: rgba(196,146,42,.7);
+
+  /* FAQ */
+  --faq-bg:            var(--card);
+  --faq-summary-bg:    var(--surface);
+  --faq-summary-hover: #222;
+  --faq-open-bg:       var(--card);
+
+  /* 문의 */
+  --inquiry-bg:   var(--bg);
+  --inquiry-glow: rgba(196,146,42,.04);
+  --checklist-bg: var(--card);
+
+  /* 갤러리 라벨 */
+  --gallery-label-bg: rgba(0,0,0,.65);
+}
+
+html { scroll-behavior: smooth; background: var(--bg); }
+body { background: var(--bg); color: var(--text); }

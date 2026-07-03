@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>존스테이 시흥점 — 월곶포구 앞 오션뷰 원룸텔</title>
+  <meta name="description" content="경기 시흥 월곶, 월곶포구 수변공원 바로 앞. 오션뷰 6개 호실 · 대부분 호실 개인 세탁기 · 전 객실 개인 화장실. 월 40만원부터. 오픈 준비 중, 사전 문의 환영.">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../static/css/theme-light.css">
+  <link rel="stylesheet" href="../static/css/common.css">
+  <link rel="stylesheet" href="../static/css/branch.css">
+  <link rel="stylesheet" href="../static/css/siheung.css">
+  <script defer src="../static/js/router.js"></script>
+</head>
+<body>
+
+<!-- ── 네비게이션 ─────────────────────────────────── -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a href="../" class="nav-logo" title="지점 선택으로 이동">Zone<span>Stay</span></a>
+      <a href="./" class="nav-branch-name" title="시흥점 처음으로">시흥점</a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#rooms">객실</a></li>
+      <li><a href="#facilities">시설</a></li>
+      <li><a href="#location">위치</a></li>
+      <li><a href="#inquiry">문의</a></li>
+    </ul>
+    <button class="nav-cta" onclick="document.getElementById('inquiry').scrollIntoView({behavior:'smooth'})">사전 문의</button>
+    <button class="nav-ham" aria-label="메뉴 열기" onclick="document.getElementById('mobileNav').classList.add('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="nav-mobile" id="mobileNav">
+  <button class="close-btn" onclick="document.getElementById('mobileNav').classList.remove('open')" aria-label="닫기">×</button>
+  <a href="#rooms" onclick="document.getElementById('mobileNav').classList.remove('open')">객실</a>
+  <a href="#facilities" onclick="document.getElementById('mobileNav').classList.remove('open')">시설</a>
+  <a href="#location" onclick="document.getElementById('mobileNav').classList.remove('open')">위치</a>
+  <a href="#inquiry" class="m-cta" onclick="document.getElementById('mobileNav').classList.remove('open')">사전 문의</a>
+</div>
+
+<!-- ── 히어로 ─────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-bg">
+    <img src="../dorm-images/Siheung/exterior/29-waterfront-skyline-morning-wide.jpg" alt="아침 만조의 월곶포구 — 건물 앞 수변 풍경" style="object-position: center 58%;">
+  </div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">경기 시흥 월곶 · 월곶포구 수변 · 오픈 준비 중</div>
+    <h1 class="hero-h1">창을 열면,<br><em>월곶 바다.</em></h1>
+    <p class="hero-sub">월곶포구 수변공원 바로 앞 원룸텔.<br>오션뷰 6개 호실 · 대부분 호실 개인 세탁기 · 전 객실 개인 화장실.</p>
+    <div class="hero-price">
+      <span class="hero-price-num">월 40만원부터</span>
+      <span class="hero-price-label">보증금·관리비는 상담 시 총액 기준 안내</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#inquiry" class="btn-primary">입주 사전 문의</a>
+      <a href="#rooms" class="btn-secondary">객실 둘러보기 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── 분위기 스트립: 월곶의 하루 ─────────────────── -->
+<div class="atmo-strip">
+  <div class="atmo-inner">
+    <div class="atmo-cell">
+      <img src="../dorm-images/Siheung/exterior/28-boardwalk-skyline-morning.jpg" alt="아침 — 건물 앞 데크 산책로" style="object-position: center 62%;">
+      <div class="atmo-label">아침 — 건물 앞 산책로</div>
+    </div>
+    <div class="atmo-cell">
+      <img src="../dorm-images/Siheung/exterior/38-boardwalk-pink-led-railing-dusk-lit.jpg" alt="노을 — 핑크 LED 난간 데크" style="object-position: center 55%;">
+      <div class="atmo-label">노을 — LED 데크</div>
+    </div>
+    <div class="atmo-cell">
+      <img src="../dorm-images/Siheung/exterior/39-boardwalk-orange-led-moon-night.jpg" alt="밤 — 달과 오렌지 LED 산책로" style="object-position: center 55%;">
+      <div class="atmo-label">밤 — 달빛 산책</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 7대 강점 ────────────────────────────────────── -->
+<section class="features" id="features">
+  <div class="section-inner">
+    <p class="section-eyebrow">Why Zone Stay Siheung</p>
+    <h2 class="section-title">바다 앞 원룸텔이<br>생활까지 챙기면</h2>
+    <p class="section-sub">전망만 좋은 게 아니라, 방 안에서 빨래와 간단 조리까지. 시흥점이 다른 여섯 가지.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🌊</div>
+        <div class="feature-title">오션뷰 6개 호실</div>
+        <div class="feature-desc">404~409호 창밖으로 갯벌과 바다, 건너편 스카이라인. 전부 실제 촬영 사진으로 확인된 전망입니다.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🫧</div>
+        <div class="feature-title">방마다 개인 세탁기</div>
+        <div class="feature-desc">15개 중 12개 호실에 드럼 세탁기가 방 안에. 공용 세탁기를 기다릴 일이 없습니다.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🍳</div>
+        <div class="feature-title">방 안 미니 주방</div>
+        <div class="feature-desc">대부분 호실에 싱크대·인덕션이 기본. 간단한 조리는 방에서, 제대로 된 요리는 공용취사실에서.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚿</div>
+        <div class="feature-title">전 객실 개인 화장실</div>
+        <div class="feature-desc">샤워·양변기·세면대를 갖춘 나만의 욕실. 15개 전 호실 포함.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🚶</div>
+        <div class="feature-title">수변 산책로 0분</div>
+        <div class="feature-desc">현관을 나서면 바로 월곶포구 LED 데크 산책로. 밤에는 난간 조명이 물 위를 비춥니다.</div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛏</div>
+        <div class="feature-title">풀옵션 가전·가구</div>
+        <div class="feature-desc">냉장고 · TV · 에어컨 · 침대 · 책상 · 옷장 기본 제공. 짐만 갖고 오면 됩니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 객실 ──────────────────────────────────────── -->
+<section class="rooms" id="rooms">
+  <div class="section-inner">
+    <p class="section-eyebrow">Room Types</p>
+    <h2 class="section-title">네 가지 타입,<br>전망부터 평면까지</h2>
+    <p class="section-sub">오션뷰부터 1.5룸, 두 방을 합친 트윈 스페이스까지. 마음에 드는 타입만 기억해 두세요 — 자세한 건 상담에서 알려드립니다.</p>
+  </div>
+
+  <div class="section-inner">
+    <div class="rooms-list">
+      <!-- 오션뷰 -->
+      <div class="room-row">
+        <div class="room-photo">
+          <img src="../dorm-images/Siheung/room-404/03-room-overview.jpg" alt="오션뷰 타입 — 404호 코너 2면 창과 갯벌·바다 전망" style="object-position: 62% center;">
+        </div>
+        <div class="room-info">
+          <span class="room-badge">6개 호실 · 404–409호 · 주력</span>
+          <p class="room-type">Ocean View</p>
+          <h3 class="room-name">오션뷰</h3>
+          <div class="room-price">월 50만원<span>/ 보증금 상담 안내</span></div>
+          <div class="room-specs">
+            <span class="spec-chip">바다·갯벌 전망</span>
+            <span class="spec-chip">개인 욕실·샤워</span>
+            <span class="spec-chip">싱크대·인덕션</span>
+            <span class="spec-chip">세탁기 (409호 제외)</span>
+          </div>
+          <p class="room-fit">아침엔 만조의 물빛, 저녁엔 건너편 불빛. 창밖 풍경이 곧 인테리어인 시흥점의 대표 타입입니다.</p>
+          <ul class="room-points">
+            <li>404호는 코너 2면 창 — 갯벌·수로·다리까지 넓게 (사진)</li>
+            <li>6개 호실 모두 실제 창밖 사진으로 전망 확인</li>
+            <li>409호만 세탁기 없음 — 대신 두 방향 창으로 채광 우수</li>
+          </ul>
+          <a href="#inquiry" class="room-cta">입주 가능 여부 문의 →</a>
+        </div>
+      </div>
+
+      <!-- 1.5룸 -->
+      <div class="room-row reverse">
+        <div class="room-photo">
+          <img src="../dorm-images/Siheung/room-416/06-sliding-door-partition.jpg" alt="1.5룸 타입 — 416호 원목 격자 미닫이로 분리된 침실과 주방" style="object-position: 40% center;">
+        </div>
+        <div class="room-info">
+          <span class="room-badge">2개 호실 · 401 · 416호</span>
+          <p class="room-type">1.5 Room Suite</p>
+          <h3 class="room-name">1.5룸 큰방</h3>
+          <div class="room-price">월 65만원<span>/ 보증금 상담 안내</span></div>
+          <div class="room-specs">
+            <span class="spec-chip">침실 분리형</span>
+            <span class="spec-chip">격자 미닫이문</span>
+            <span class="spec-chip">개인 욕실·샤워</span>
+            <span class="spec-chip">세탁기 포함</span>
+          </div>
+          <p class="room-fit">원목 격자 미닫이를 닫으면 침실, 열면 하나의 넓은 공간. 재택근무나 짐 많은 장기 거주자에게 방 하나 반의 여유를 줍니다.</p>
+          <ul class="room-points">
+            <li>주방·거실과 침실이 미닫이로 분리되는 유일한 타입 (사진: 416호)</li>
+            <li>416호는 침실 코너 2면 창 + 냉장고 2대·식탁 구비</li>
+            <li>401호는 LG 드럼 세탁기·코너 창 2개 구성</li>
+          </ul>
+          <a href="#inquiry" class="room-cta">남은 방 확인 →</a>
+        </div>
+      </div>
+
+      <!-- 트윈 스페이스 -->
+      <div class="room-row">
+        <div class="room-photo">
+          <img src="../dorm-images/Siheung/room-412/04-room-overview-water-view.jpg" alt="트윈 스페이스 — 412호 수변 통창과 넓은 평면" style="object-position: 55% center;">
+        </div>
+        <div class="room-info">
+          <span class="room-badge">2개 호실 · 412 · 414호</span>
+          <p class="room-type">Twin Space</p>
+          <h3 class="room-name">트윈 스페이스 <small style="font-size:14px;font-weight:600;color:var(--muted)">— 작은방 2개 합침</small></h3>
+          <div class="room-price">월 55만원<span>/ 보증금 상담 안내</span></div>
+          <div class="room-specs">
+            <span class="spec-chip">수변 통창</span>
+            <span class="spec-chip">더블 사이즈 평면</span>
+            <span class="spec-chip">빌트인 세탁기</span>
+            <span class="spec-chip">대형 냉장고</span>
+          </div>
+          <p class="room-fit">작은방 두 개를 터서 만든 넓은 원룸. 벽 한 면을 채우는 통창 너머로 수면과 스카이라인이 펼쳐집니다.</p>
+          <ul class="room-points">
+            <li>벽면 전체 미닫이 통창 — 수변 전망 (사진: 412호)</li>
+            <li>싱크대 하부 빌트인 드럼 세탁기 + 삼성 대형 냉장고</li>
+            <li>414호는 우드 대형 옷장까지 — 수납 최다</li>
+          </ul>
+          <a href="#inquiry" class="room-cta">입주 가능 여부 문의 →</a>
+        </div>
+      </div>
+
+      <!-- 실속형 -->
+      <div class="room-row reverse">
+        <div class="room-photo">
+          <img src="../dorm-images/Siheung/room-403/03-bedroom-overview.jpg" alt="실속형 — 403호 콤비 블라인드 창과 풀옵션 구성" style="object-position: 60% center;">
+        </div>
+        <div class="room-info">
+          <span class="room-badge">5개 호실 · 402 · 403 · 410 · 415 · 417호</span>
+          <p class="room-type">Value Room</p>
+          <h3 class="room-name">실속형</h3>
+          <div class="room-price">월 40~45만원<span>/ 보증금 상담 안내</span></div>
+          <div class="room-specs">
+            <span class="spec-chip">도심뷰 또는 내창</span>
+            <span class="spec-chip">개인 욕실·샤워</span>
+            <span class="spec-chip">풀옵션 가전</span>
+          </div>
+          <p class="room-fit">월 고정비를 가장 낮추면서 개인 욕실과 풀옵션은 그대로. 첫 독립이나 단기 거주에 부담 없는 시작점입니다.</p>
+          <ul class="room-points">
+            <li>45만원: 402·403호 (세탁기 포함, 큰 창 — 사진: 403호)</li>
+            <li>40만원: 410·415호 (도심뷰, 세탁기 없음) · 417호 (내창, 세탁기 포함)</li>
+            <li>모든 호실 냉장고·TV·에어컨·책상 기본</li>
+          </ul>
+          <a href="#inquiry" class="room-cta">입주 가능 여부 문의 →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 포함 항목 ─────────────────────────────────── -->
+<section class="included" id="included">
+  <div class="section-inner">
+    <p class="section-eyebrow">In Your Room</p>
+    <h2 class="section-title">방 하나에 이미 다 들어있다</h2>
+    <p class="section-sub">세탁부터 조리, 샤워까지 방 안에서 해결. 짐만 갖고 오면 그날부터 생활이 시작됩니다.</p>
+    <div class="included-grid">
+      <div class="included-item">
+        <div class="included-icon">🫧</div>
+        <div>
+          <div class="included-title">개인 드럼 세탁기</div>
+          <div class="included-desc">12개 호실 방 안에 세탁기 빌트인. 내 빨래를 내 방에서, 기다림 없이.</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">🍳</div>
+        <div>
+          <div class="included-title">싱크대 · 인덕션</div>
+          <div class="included-desc">대부분 호실에 미니 주방 기본. 늦은 밤 간단 조리도 방에서 바로.</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">🚿</div>
+        <div>
+          <div class="included-title">개인 화장실 · 샤워</div>
+          <div class="included-desc">양변기·세면대·샤워를 갖춘 전용 욕실. 15개 전 호실 포함.</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">📺</div>
+        <div>
+          <div class="included-title">냉장고 · TV · 에어컨</div>
+          <div class="included-desc">생활 가전 기본 제공. 별도 구입 없이 입주 당일부터 사용.</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">🛏</div>
+        <div>
+          <div class="included-title">침대 · 책상 · 옷장</div>
+          <div class="included-desc">가구 풀옵션. 처음 독립하는 분도 몸만 오면 됩니다.</div>
+        </div>
+      </div>
+      <div class="included-item">
+        <div class="included-icon">🍚</div>
+        <div>
+          <div class="included-title">공용취사실</div>
+          <div class="included-desc">쿠첸 인덕션 · 전자레인지 2대 · 정수기를 갖춘 밝은 공용 주방. 제대로 된 요리는 여기서.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 시설 갤러리 ────────────────────────────────── -->
+<section class="gallery" id="facilities">
+  <div class="section-inner">
+    <p class="section-eyebrow">Facilities</p>
+    <h2 class="section-title">밝은 공간, 갖춘 시설</h2>
+    <p class="section-sub">전 사진 실제 촬영본. 밝은 객실과 브릭 갤러리풍 복도, 공용취사실까지 그대로 보여드립니다.</p>
+    <div class="gallery-grid">
+      <div class="gallery-cell">
+        <img src="../dorm-images/Siheung/room-409/05-room-overview-alt-angle.jpg" alt="409호 — 두 방향 창으로 수변이 보이는 밝은 객실" style="object-position: 55% 45%;">
+        <div class="gallery-label">409호 — 두 방향 오션뷰</div>
+      </div>
+      <div class="gallery-cell">
+        <img src="../dorm-images/Siheung/web-crops/bathroom-409-upright.jpg" alt="개인 화장실 — 세면대·양변기·샤워" style="object-position: center 78%;">
+        <div class="gallery-label">개인 화장실</div>
+      </div>
+      <div class="gallery-cell">
+        <img src="../dorm-images/Siheung/common-area/04-shared-kitchen-overview-cabinets.jpg" alt="공용취사실 — 화이트 상부장과 라인 조명" style="object-position: center 55%;">
+        <div class="gallery-label">공용취사실</div>
+      </div>
+      <div class="gallery-cell">
+        <img src="../dorm-images/Siheung/web-crops/corridor-artwork-brick-upright.jpg" alt="브릭 갤러리풍 복도 — 액자와 유리블록 바닥" style="object-position: center 68%;">
+        <div class="gallery-label">복도 — 브릭 · 갤러리</div>
+      </div>
+      <div class="gallery-cell">
+        <img src="../dorm-images/Siheung/exterior/46-zonestay-glass-entrance-door.jpg" alt="존스테이 로고 유리 출입문" style="object-position: 45% center;">
+        <div class="gallery-label">전용 출입구</div>
+      </div>
+      <div class="gallery-cell">
+        <img src="../dorm-images/Siheung/signage/04-full-building-front-gold-sign-daytime.jpg" alt="존스테이 원룸텔 건물 전경" style="object-position: center 40%;">
+        <div class="gallery-label">건물 전경 — 4F</div>
+      </div>
+      <div class="gallery-cell">
+        <img src="../dorm-images/Siheung/room-404/05-window-ocean-view.jpg" alt="404호 창밖 — 갯벌·수로·건너편 스카이라인" style="object-position: center 45%;">
+        <div class="gallery-label">404호 창밖 — 실제 전망</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 위치 ──────────────────────────────────────── -->
+<section class="location" id="location">
+  <div class="section-inner">
+    <p class="section-eyebrow">Location</p>
+    <h2 class="section-title">월곶포구 앞,<br>물가에서 시작하는 하루</h2>
+    <p class="section-sub">건물이 수변공원에 면해 있어 산책로·포구 상권이 곧 생활권입니다.</p>
+    <div class="location-layout">
+      <div class="map-slot">
+        <img src="../dorm-images/Siheung/exterior/45-waterfront-cctv-boat-skyline-daytime.jpg" alt="건물 앞 월곶포구 수변 — 주간 실촬영" style="position:absolute; inset:0; object-position: center 70%;">
+        <div class="gallery-label">건물 앞 수변 산책로 — 실제 촬영</div>
+      </div>
+      <div>
+        <div class="location-items">
+          <div class="location-item">
+            <div class="loc-dot"></div>
+            <div>
+              <div class="loc-name">월곶포구 수변공원 · LED 데크 산책로</div>
+              <div class="loc-time">도보 0분</div>
+              <div class="loc-desc">건물이 산책로에 바로 면해 있습니다. 퇴근 후 물가 산책이 일상이 됩니다.</div>
+            </div>
+          </div>
+          <div class="location-item">
+            <div class="loc-dot"></div>
+            <div>
+              <div class="loc-name">월곶포구광장 · 수산시장</div>
+              <div class="loc-time">도보권</div>
+              <div class="loc-desc">포구 광장과 수산시장, 카페·상가가 인접한 수변 상권 안입니다.</div>
+            </div>
+          </div>
+          <div class="location-item">
+            <div class="loc-dot"></div>
+            <div>
+              <div class="loc-name">월곶역 (수인분당선)</div>
+              <div class="loc-time">도보권 · 실측 예정</div>
+              <div class="loc-desc">수인분당선으로 인천·수원 방면 이동, 서울 방면 환승 가능.</div>
+            </div>
+          </div>
+          <div class="location-item">
+            <div class="loc-dot" style="background:var(--gold-deep)"></div>
+            <div>
+              <div class="loc-name">생활 편의</div>
+              <div class="loc-time">도서관 · 카페 · 상가</div>
+              <div class="loc-desc">월곶도서관, 카페, 스크린골프 등 인근 상권을 도보로 이용할 수 있습니다.</div>
+            </div>
+          </div>
+        </div>
+        <p class="loc-notice">※ 도보 시간은 실측 후 확정 예정입니다. 정확한 주소와 길안내는 상담 시 드립니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FAQ ───────────────────────────────────────── -->
+<section class="faq">
+  <div class="section-inner">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">계약 전에 많이 묻는 것들</h2>
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>오션뷰는 어느 호실인가요? <span class="faq-arrow">+</span></summary>
+        <div class="faq-body">404~409호 6개 호실입니다. 여섯 방 모두 창밖으로 갯벌과 바다, 건너편 스카이라인이 실제로 보이는 것을 촬영 사진으로 확인했습니다. 412·414호는 오션뷰 지정 호실은 아니지만 벽면 통창으로 넓은 수변 전망이 확보됩니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary>세탁기가 없는 호실은 어떻게 하나요? <span class="faq-arrow">+</span></summary>
+        <div class="faq-body">409·410·415호 세 곳은 방 안에 세탁기가 없습니다. 세탁이 잦은 분께는 세탁기 포함 12개 호실을 우선 추천드리며, 세 호실의 세탁 이용 방법은 상담 시 안내드립니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary>1.5룸은 어떤 구조인가요? <span class="faq-arrow">+</span></summary>
+        <div class="faq-body">401·416호는 원목 격자 미닫이문으로 침실과 주방·거실 공간이 분리되는 구조입니다. 문을 닫으면 독립된 침실이 생기고, 열면 하나의 넓은 공간으로 쓸 수 있어 재택근무·장기 거주에 적합합니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary>보증금과 관리비는 얼마인가요? <span class="faq-arrow">+</span></summary>
+        <div class="faq-body">호실 타입과 계약 기간에 따라 다릅니다. 첫 상담에서 월세·보증금·관리비를 총액 기준으로 한 번에 안내드리며, 숨겨진 추가 비용은 없습니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary>입주 시 기본으로 제공되는 것들이 있나요? <span class="faq-arrow">+</span></summary>
+        <div class="faq-body">전 호실에 냉장고·TV·에어컨·침대·책상·옷장이 기본 제공됩니다. 대부분 호실에는 싱크대·인덕션 미니 주방과 개인 드럼 세탁기까지 있어 짐만 갖고 오시면 됩니다. 밥솥이 필요한 요리는 공용취사실(인덕션·전자레인지·정수기)을 이용하실 수 있습니다.</div>
+      </details>
+      <details class="faq-item">
+        <summary>지금 입주할 수 있나요? <span class="faq-arrow">+</span></summary>
+        <div class="faq-body">시흥점은 현재 오픈 준비 중입니다. 사전 문의를 남겨주시면 오픈 일정과 호실별 입주 가능 시점을 가장 먼저 안내드립니다.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ── 문의 ──────────────────────────────────────── -->
+<section class="inquiry" id="inquiry">
+  <div class="inquiry-inner">
+    <p class="section-eyebrow" style="text-align:center">Contact</p>
+    <h2 class="inquiry-h2">바다 앞 그 방,<br>먼저 찜해두세요</h2>
+    <p class="inquiry-sub">오픈 준비 중이라 사전 문의 순서대로 안내드립니다.<br>원하는 타입(오션뷰 · 1.5룸 등)을 말씀해 주시면 더 빠릅니다.</p>
+    <ul class="inquiry-checklist">
+      <li>오픈 일정 우선 안내</li>
+      <li>호실별 입주 가능 시점</li>
+      <li>월세·보증금 총액 확인</li>
+    </ul>
+    <div class="inquiry-btns">
+      <a href="#inquiry" class="btn-kakao">💬 카카오톡으로 문의</a>
+      <a href="tel:0502-1929-2939" class="btn-line">📞 전화 0502-1929-2939</a>
+      <a href="https://www.instagram.com/zonestay.kr/" target="_blank" class="btn-line">📷 인스타그램 DM</a>
+    </div>
+    <p class="inquiry-addr">경기도 시흥시 월곶동 · 존스테이 원룸텔 4층 · 월곶포구 수변공원 앞</p>
+  </div>
+</section>
+
+<!-- ── 푸터 ──────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Zone<span>Stay</span> 시흥점</div>
+      <div class="footer-meta" style="margin-top:8px;">경기도 시흥시 월곶동 존스테이 원룸텔 4층 · T. 0502-1929-2939 · @zonestay.kr</div>
+    </div>
+    <div class="footer-links">
+      <a href="#rooms">객실</a>
+      <a href="#inquiry">문의</a>
+      <a href="../incheon/">인천점</a>
+      <a href="../">지점 선택</a>
+      <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">맨 위로 ↑</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ── 플로팅 버튼 ────────────────────────────────── -->
+<button class="floating" onclick="document.getElementById('inquiry').scrollIntoView({behavior:'smooth'})">
+  💬 사전 문의
+</button>
+
+<script src="../static/js/page.js"></script>
+</body>
+</html>

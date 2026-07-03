@@ -1,0 +1,121 @@
+/* ═══════════════════════════════════════════════════════
+   ZoneStay 공통 스타일 (모든 페이지에서 로드)
+   ─ 리셋 · 베이스 · 내비 · 플로팅 버튼
+   각 페이지 CSS는 :root에서 아래 시맨틱 변수를 정의한다:
+     --nav-bg, --nav-line, --nav-fg, --nav-muted, --nav-menu-bg
+     --brand-gold  (로고 "Stay" 포인트)
+     --accent, --accent-br, --accent-shadow  (CTA·포커스)
+   ═══════════════════════════════════════════════════════ */
+
+/* ── 리셋 · 베이스 ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scrollbar-gutter: stable; }  /* 스크롤바 유무와 무관하게 페이지 간 로고 x좌표 고정 */
+body {
+  font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-width: 320px;
+}
+img { display: block; width: 100%; height: 100%; object-fit: cover; image-orientation: from-image; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+
+/* ── SPA 페이지 전환 페이드 (router.js) ─────────────
+   View Transitions 미지원 브라우저용 폴백. 지원 브라우저는
+   router.js가 startViewTransition으로 크로스페이드를 처리한다. */
+body { transition: opacity .18s ease; }
+body.rt-fade { opacity: 0; }
+::view-transition-old(root),
+::view-transition-new(root) { animation-duration: .28s; }
+@media (prefers-reduced-motion: reduce) {
+  body { transition: none; }
+  body.rt-fade { opacity: 1; }
+}
+
+/* ── 내비바 (공통 스펙: 폭 1100 · 높이 64 · 패딩 24) ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--nav-line);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.nav-inner {
+  max-width: 1100px; margin: 0 auto;
+  padding: 0 24px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px;
+}
+/* 로고 락업: ZoneStay(→ index) + 지점명(→ 해당 페이지) */
+.nav-left { display: flex; align-items: baseline; gap: 6px; min-width: 0; }
+.nav-logo, .nav-branch-name {
+  font-size: 18px; font-weight: 700; letter-spacing: -0.02em;
+  color: var(--nav-fg); white-space: nowrap;
+  transition: opacity .2s;
+}
+.nav-logo span { color: var(--brand-gold); }
+.nav-logo:hover, .nav-branch-name:hover { opacity: .7; }
+.nav-tag { font-size: 12px; font-weight: 600; color: var(--nav-muted); }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { font-size: 14px; font-weight: 600; color: var(--nav-muted); transition: color .2s; }
+.nav-links a:hover { color: var(--nav-fg); }
+.nav-cta {
+  background: var(--accent); color: #fff;
+  border: none;
+  padding: 0 20px; height: 38px;
+  border-radius: 12px;
+  font-size: 13px; font-weight: 700;
+  transition: background .2s, transform .15s;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: var(--accent-br); transform: translateY(-1px); }
+.nav-ham {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; padding: 4px;
+}
+.nav-ham span { display: block; width: 22px; height: 2px; background: var(--nav-fg); border-radius: 2px; }
+.nav-mobile {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: var(--nav-menu-bg);
+  flex-direction: column; padding: 80px 32px 40px;
+}
+.nav-mobile.open { display: flex; }
+.nav-mobile .close-btn {
+  position: absolute; top: 20px; right: 24px;
+  background: none; border: none;
+  font-size: 28px; color: var(--nav-fg); cursor: pointer;
+}
+.nav-mobile a {
+  display: block; padding: 20px 0;
+  font-size: 28px; font-weight: 700; color: var(--nav-fg);
+  border-bottom: 1px solid var(--nav-line);
+}
+.nav-mobile a:last-of-type { border-bottom: none; }
+.nav-mobile .m-cta {
+  margin-top: 32px;
+  display: block; text-align: center;
+  background: var(--accent); color: #fff;
+  padding: 18px; border-radius: 12px;
+  font-size: 18px; font-weight: 700;
+  border-bottom: none;
+}
+
+/* ── 플로팅 버튼 ───────────────────────────────── */
+.floating {
+  position: fixed; bottom: 28px; right: 24px; z-index: 90;
+  display: flex; align-items: center; gap: 8px;
+  height: 52px; padding: 0 20px;
+  background: var(--accent); color: #fff;
+  border: none; border-radius: 100px;
+  font-size: 14px; font-weight: 700;
+  box-shadow: var(--accent-shadow);
+  transition: background .2s, transform .15s;
+}
+.floating:hover { background: var(--accent-br); transform: translateY(-2px); }
+
+/* ── 내비 반응형 ───────────────────────────────── */
+@media (max-width: 768px) {
+  .nav-links, .nav-cta { display: none; }
+  .nav-ham { display: flex; }
+}

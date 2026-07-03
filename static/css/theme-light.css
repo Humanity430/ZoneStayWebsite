@@ -1,0 +1,84 @@
+/* ═══════════════════════════════════════════════════════
+   테마 — 라이트 (시흥점: 월곶 아침 바다 팔레트)
+   theme-dark.css 와 동일한 토큰 이름에 밝은 값만 채운다.
+   레이아웃 규칙은 없음. 새 라이트 지점은 이 파일을 그대로 링크.
+   ═══════════════════════════════════════════════════════ */
+:root {
+  /* 표면 · 텍스트 */
+  --bg:        #FAF8F3;
+  --card:      #FFFFFF;
+  --surface:   #F4F0E7;
+  --line:      #E8E2D6;
+  --text:      #201D18;
+  --muted:     #8A8272;
+  --dim:       #B9B1A0;
+  --inset:     #FAF8F3;   /* 흰 카드 위에 얹히는 패널·칩(한 톤 낮은 종이색) */
+
+  /* 액센트 — 월곶 바다 틸 */
+  --accent:          #33635E;
+  --accent-br:       #4A7D78;
+  --accent-soft:     #EAF2F0;
+  --accent-line:     #C9DBD8;
+  --accent-shadow:   0 8px 32px rgba(51,99,94,.22);
+  --accent-shadow-lg:0 12px 40px rgba(51,99,94,.3);
+  --shadow-subtle:   0 6px 20px rgba(32,29,24,.07);
+  --radius-card: 16px;
+  --radius-btn:  12px;
+  --brand-gold:  #8F6A1A;   /* 로고·아이브로우 소량만 */
+
+  /* 레거시 별칭 — siheung/index.html 인라인 style 이 참조 */
+  --ink:       var(--text);
+  --gold-deep: var(--brand-gold);
+
+  /* common.css 계약 변수 (내비·플로팅) */
+  --nav-bg:      rgba(250,248,243,.92);
+  --nav-line:    var(--line);
+  --nav-fg:      var(--text);
+  --nav-muted:   var(--muted);
+  --nav-menu-bg: var(--bg);
+
+  /* 히어로 아이브로우 */
+  --eyebrow-fg:  #33635E;
+  --eyebrow-dot: #4A7D78;
+  --eyebrow-bd:  #C9DBD8;
+  --eyebrow-bg:  rgba(234,242,240,.9);
+
+  /* 히어로 */
+  --hero-sub-fg:    var(--muted);
+  --price-bg:       var(--card);
+  --price-bd:       #C9DBD8;
+  --price-shadow:   var(--shadow-subtle);
+  --price-label-fg: var(--muted);
+
+  /* 버튼 */
+  --btn-sec-bg:       var(--card);
+  --btn-sec-hover-bd: #C9DBD8;
+
+  /* 강점 카드 */
+  --feature-bg-hover: var(--accent-soft);
+  --feature-icon-bd:  #C9DBD8;
+
+  /* 객실 */
+  --room-fit-bar: var(--accent-line);
+
+  /* 위치 안내 배너 */
+  --notice-bd: #C9DBD8;
+  --notice-fg: var(--accent);
+
+  /* FAQ */
+  --faq-bg:            var(--bg);
+  --faq-summary-bg:    var(--card);
+  --faq-summary-hover: var(--accent-soft);
+  --faq-open-bg:       var(--accent-soft);
+
+  /* 문의 */
+  --inquiry-bg:   var(--card);
+  --inquiry-glow: rgba(51,99,94,.06);
+  --checklist-bg: var(--bg);
+
+  /* 갤러리 라벨 */
+  --gallery-label-bg: rgba(250,248,243,.9);
+}
+
+html { scroll-behavior: smooth; background: var(--bg); }
+body { background: var(--bg); color: var(--text); }

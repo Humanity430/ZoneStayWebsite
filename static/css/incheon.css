@@ -1,0 +1,109 @@
+/* ═══════════════════════════════════════════════════════
+   인천점 전용 override (다크)
+   ─ 팔레트는 theme-dark.css, 공통 레이아웃은 branch.css.
+   ─ 여기에는 인천 고유의 히어로 프레임과 branch 에 없는
+     인천 전용 섹션(비교표·배지 등)만 둔다.
+   ═══════════════════════════════════════════════════════ */
+
+/* ── 히어로 프레임 — 풀블리드 이미지 위 하단 정렬 ─── */
+.hero {
+  position: relative; overflow: hidden;
+  min-height: 100svh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg img { object-position: center 30%; }
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,10,10,.95) 0%, rgba(10,10,10,.6) 40%, rgba(10,10,10,.2) 100%);
+}
+.hero-content {
+  position: relative; z-index: 1;
+  max-width: 1100px; margin: 0 auto;
+  padding: 0 24px 80px;
+  width: 100%;
+}
+
+/* ── 구분선 ───────────────────────────────────────── */
+.divider {
+  height: 1px; background: var(--line);
+  max-width: 1100px; margin: 0 auto;
+}
+
+/* ── 객실 사진 오버레이 (다크 전용) ──────────────── */
+.room-photo img { object-position: center; }
+.room-photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to right, rgba(10,10,10,.0) 70%, rgba(10,10,10,.3) 100%);
+}
+.room-row.reverse .room-photo::after {
+  background: linear-gradient(to left, rgba(10,10,10,.0) 70%, rgba(10,10,10,.3) 100%);
+}
+
+/* ── 재고 배지 (인천 전용 3종) ───────────────────── */
+.badge-available { background: rgba(139,158,141,.12); color: var(--sage, #8B9E8D); border: 1px solid rgba(139,158,141,.3); }
+.badge-few  { background: rgba(196,146,42,.12); color: var(--accent);    border: 1px solid rgba(196,146,42,.3); }
+.badge-rare { background: rgba(196,146,42,.08); color: var(--accent-br); border: 1px solid rgba(196,146,42,.2); }
+
+/* ── 비교표 (인천 전용) ──────────────────────────── */
+.compare {
+  padding: 0 24px 80px;
+  background: var(--bg);
+}
+.compare-inner { max-width: 1100px; margin: 0 auto; }
+.compare-title {
+  font-size: 20px; font-weight: 700; color: var(--text);
+  margin-bottom: 20px;
+}
+.compare-wrap {
+  border: 1px solid var(--line); border-radius: var(--radius-card);
+  overflow: hidden; overflow-x: auto;
+}
+table { width: 100%; min-width: 600px; border-collapse: collapse; }
+thead tr { border-bottom: 2px solid var(--line); background: var(--card); }
+thead th {
+  padding: 16px 20px; text-align: left;
+  font-size: 13px; font-weight: 700; color: var(--text);
+}
+thead th:first-child { color: var(--muted); font-weight: 600; }
+tbody tr { border-bottom: 1px solid var(--line); }
+tbody tr:last-child { border-bottom: none; }
+tbody tr:nth-child(even) { background: var(--card); }
+tbody td {
+  padding: 14px 20px;
+  font-size: 14px; color: var(--muted);
+}
+tbody td:first-child { font-weight: 600; color: var(--text); }
+.td-gold { color: var(--accent) !important; font-weight: 700 !important; }
+.td-check { color: var(--sage, #8B9E8D) !important; }
+
+/* ── 위치 지도 자리(플레이스홀더) ────────────────── */
+.map-slot {
+  background: var(--inset);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 12px;
+  color: var(--muted);
+}
+.map-slot-icon { font-size: 36px; }
+.map-slot p { font-size: 13px; }
+
+/* ── 인스타 버튼 (인천 전용) ─────────────────────── */
+.btn-insta {
+  display: inline-flex; align-items: center; gap: 8px;
+  height: 56px; padding: 0 32px;
+  background: none;
+  border: 1px solid var(--line); color: var(--text);
+  border-radius: var(--radius-btn);
+  font-size: 16px; font-weight: 700;
+  transition: border-color .2s, background .2s;
+}
+.btn-insta:hover { border-color: var(--accent-line); background: var(--accent-soft); }
+
+/* ── 모바일 (히어로·사진 델타) ───────────────────── */
+@media (max-width: 768px) {
+  .hero-content { padding-bottom: 60px; }
+  .room-photo { min-height: 260px; }
+}

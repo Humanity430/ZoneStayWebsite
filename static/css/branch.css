@@ -112,6 +112,73 @@
   margin-bottom: 60px;
 }
 
+/* ── 2026년 9월 입실료·쿠폰 정책 ───────────────────── */
+.pricing-policy {
+  padding: 88px 24px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+.pricing-policy .section-sub { margin-bottom: 36px; max-width: 680px; }
+.policy-banner {
+  display: grid;
+  grid-template-columns: minmax(220px, .8fr) minmax(0, 1.2fr);
+  gap: 28px;
+  padding: 28px;
+  border: 1px solid var(--accent-line);
+  border-radius: var(--radius-card);
+  background: var(--accent-soft);
+  margin-bottom: 28px;
+}
+.policy-coupon { display: flex; flex-direction: column; justify-content: center; }
+.policy-kicker {
+  font-size: 12px; font-weight: 800; letter-spacing: .08em;
+  color: var(--accent); margin-bottom: 8px;
+}
+.policy-coupon strong {
+  font-size: clamp(28px, 5vw, 48px); line-height: 1.1;
+  letter-spacing: -.04em; color: var(--text); word-break: keep-all;
+}
+.policy-coupon span { margin-top: 10px; font-size: 14px; color: var(--muted); }
+.policy-conditions {
+  display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;
+  list-style: none;
+}
+.policy-conditions li {
+  min-height: 68px; padding: 14px 16px;
+  border: 1px solid var(--line); border-radius: 12px;
+  background: var(--inset); color: var(--text);
+  font-size: 14px; line-height: 1.5; word-break: keep-all;
+}
+.policy-conditions strong { display: block; color: var(--accent); font-size: 12px; margin-bottom: 3px; }
+.rate-card {
+  overflow: hidden; border: 1px solid var(--line);
+  border-radius: var(--radius-card); background: var(--inset);
+}
+.rate-card-head {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 16px;
+  padding: 20px 22px; border-bottom: 1px solid var(--line);
+}
+.rate-card-head h3 { font-size: 20px; color: var(--text); }
+.rate-card-head p { font-size: 12px; color: var(--muted); text-align: right; }
+.rate-grid {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.rate-item {
+  padding: 20px; border-right: 1px solid var(--line);
+  background: var(--card);
+}
+.rate-item:last-child { border-right: none; }
+.rate-type { font-size: 12px; font-weight: 800; color: var(--accent); margin-bottom: 8px; }
+.rate-price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 7px; margin-bottom: 8px; }
+.rate-price del { font-size: 14px; color: var(--muted); }
+.rate-price strong { font-size: 25px; color: var(--text); letter-spacing: -.03em; }
+.rate-rooms { font-size: 12px; line-height: 1.55; color: var(--muted); word-break: keep-all; }
+.policy-legacy {
+  margin-top: 18px; padding-left: 14px; border-left: 2px solid var(--accent);
+  font-size: 13px; line-height: 1.65; color: var(--muted); word-break: keep-all;
+}
+.policy-legacy strong { color: var(--text); }
+
 /* ── 강점 섹션 ────────────────────────────────────── */
 .features {
   background: var(--card);
@@ -422,6 +489,10 @@ footer {
 
 /* ── 모바일 반응형 (공통) ─────────────────────────── */
 @media (max-width: 768px) {
+  .policy-banner { grid-template-columns: 1fr; }
+  .rate-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .rate-item:nth-child(2) { border-right: none; }
+  .rate-item:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
   .room-row { grid-template-columns: 1fr; }
   .room-row.reverse { direction: ltr; }
   .room-info { padding: 32px 24px; }
@@ -433,6 +504,14 @@ footer {
   .gallery-cell:last-child { grid-column: 1 / 3; }
 }
 @media (max-width: 540px) {
+  .pricing-policy { padding: 72px 18px; }
+  .policy-banner { padding: 22px 18px; }
+  .policy-conditions { grid-template-columns: 1fr; }
+  .rate-card-head { align-items: flex-start; flex-direction: column; }
+  .rate-card-head p { text-align: left; }
+  .rate-grid { grid-template-columns: 1fr; }
+  .rate-item, .rate-item:nth-child(2) { border-right: none; border-bottom: 1px solid var(--line); }
+  .rate-item:last-child { border-bottom: none; }
   .features-grid { grid-template-columns: 1fr; }
   .included-grid { grid-template-columns: 1fr; }
   .atmo-inner { grid-template-columns: 1fr; height: auto; }

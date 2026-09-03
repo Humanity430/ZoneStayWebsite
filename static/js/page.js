@@ -24,6 +24,20 @@
     sections.forEach(function (s) { obs.observe(s); });
   }
 
+  // ── 플로팅 CTA: 히어로가 보이는 동안 숨김 ──
+  // 좁은 화면에서 로드 직후 플로팅이 히어로 보조 버튼을 덮는 문제 방지.
+  // JS 미동작 시 클래스가 안 붙어 항상 노출된다(점진적 향상).
+  var floating = document.querySelector('.floating');
+  var hero = document.querySelector('.hero');
+  if (floating && hero && 'IntersectionObserver' in window) {
+    var heroObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        floating.classList.toggle('at-hero', e.isIntersecting);
+      });
+    }, { threshold: 0.35 });
+    heroObs.observe(hero);
+  }
+
   // ── ESC 로 모바일 메뉴 닫기 ──
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape') {

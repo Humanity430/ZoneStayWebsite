@@ -3,18 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>존스테이 인천점 — 시안 01 · Luxe Dark</title>
-  <meta name="description" content="인천 미추홀구 신세계빌딩 4층. 전 객실 개인 화장실 · 풀옵션 · 관리비 포함. 월 40만원부터.">
+  <title>존스테이 인천점 — 인천법원 바로 옆 프리미엄 원룸텔</title>
+  <meta name="description" content="존스테이 인천 학익점. 2026년 9월 이후 신규 입실자 매월 5만원 할인. 최소 입실기간 2개월, 보증금 30만원·부가세 별도.">
   <link rel="icon" type="image/svg+xml" href="../static/logo/zonestay-logo-mono-white-bg.svg">
   <link rel="preconnect" href="https://cdn.jsdelivr.net">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="../static/css/theme-dark.css">
   <link rel="stylesheet" href="../static/css/common.css">
-  <link rel="stylesheet" href="../static/css/branch.css">
+  <link rel="stylesheet" href="../static/css/branch.css?v=20260903-policy-1">
   <link rel="stylesheet" href="../static/css/incheon.css">
-  <script defer src="../static/js/router.js"></script>
+  <link rel="stylesheet" href="../static/css/editorial.css?v=20260903-policy-1">
+  <script defer src="../static/js/router.js?v=20260813"></script>
 </head>
-<body>
+<body class="branch-page branch-incheon">
+<a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
 
 <!-- ── 네비게이션 ─────────────────────────────────── -->
 <nav class="nav" data-branch="incheon">
@@ -31,12 +33,12 @@
       <li><a href="#inquiry">문의</a></li>
     </ul>
     <button class="nav-cta" data-kakao="incheon" onclick="document.getElementById('inquiry').scrollIntoView({behavior:'smooth'})">카카오톡 문의</button>
-    <button class="nav-ham" id="hamBtn" aria-label="메뉴 열기" onclick="document.getElementById('mobileNav').classList.add('open')">
+    <button class="nav-ham" id="hamBtn" aria-label="메뉴 열기" aria-controls="mobileNav" aria-expanded="false" onclick="document.getElementById('mobileNav').classList.add('open')">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
-<div class="nav-mobile" id="mobileNav">
+<div class="nav-mobile" id="mobileNav" role="dialog" aria-modal="true" aria-label="모바일 메뉴" aria-hidden="true">
   <button class="close-btn" onclick="document.getElementById('mobileNav').classList.remove('open')" aria-label="닫기">×</button>
   <a href="#pricing" onclick="document.getElementById('mobileNav').classList.remove('open')">입실료</a>
   <a href="#rooms" onclick="document.getElementById('mobileNav').classList.remove('open')">객실</a>
@@ -46,6 +48,7 @@
   <a href="#inquiry" class="m-cta" data-kakao="incheon" onclick="document.getElementById('mobileNav').classList.remove('open')">카카오톡 문의</a>
 </div>
 
+<main id="main-content" tabindex="-1">
 <!-- ── 히어로 ─────────────────────────────────────── -->
 <section class="hero">
   <div class="hero-bg">
@@ -54,14 +57,14 @@
   <div class="hero-content">
     <div class="hero-eyebrow">인천 미추홀구 · 신세계빌딩 4층 · 전 객실 개인 화장실</div>
     <h1 class="hero-h1">내 공간,<br><em>제대로.</em></h1>
-    <p class="hero-sub">고급스러운 공간에서, 합리적인 가격으로.<br>전 객실 개인 욕실 · 풀옵션 가전 · 관리비 포함.</p>
+    <p class="hero-sub">인천지방법원에서 걸어서 약 5분.<br>18개 전 객실에 개인 욕실과 생활 가전을 갖췄습니다.</p>
     <div class="hero-price">
-      <span class="hero-price-num" data-price="heroFrom">첫 달 35만원부터</span>
-      <span class="hero-price-label">5만원 쿠폰 적용 · 부가세 별도</span>
+      <span class="hero-price-num" data-price="heroFrom">월 35만원부터</span>
+      <span class="hero-price-label">매월 5만원 할인 · 부가세 별도</span>
     </div>
     <div class="hero-actions">
-      <a href="#inquiry" class="btn-primary" data-kakao="incheon">카카오톡으로 문의</a>
-      <a href="#pricing" class="btn-secondary">9월 입실료 보기 →</a>
+      <a href="#inquiry" class="btn-primary" data-kakao="incheon">현재 공실 확인</a>
+      <a href="#pricing" class="btn-secondary">9월 입실료 보기</a>
     </div>
   </div>
 </section>
@@ -84,26 +87,25 @@
 <!-- ── 2026년 9월 입실료 ─────────────────────────── -->
 <section class="pricing-policy" id="pricing">
   <div class="section-inner">
-    <p class="section-eyebrow">September 2026</p>
-    <h2 class="section-title">할인은 하나로,<br>첫 달 5만원 쿠폰</h2>
-    <p class="section-sub">2026년 9월 이후 인천 학익점 신규 입실자에게 적용되는 단순한 새 정책입니다. 아래 금액은 쿠폰 적용 전 정상 입실료와 첫 달 실제 적용가입니다.</p>
+    <p class="section-eyebrow">2026년 9월 신규 입실</p>
+    <h2 class="section-title">신규 입실 5만원 할인</h2>
+    <p class="section-sub">정상 입실료와 매월 할인 적용가를 함께 표시했습니다. 최소 입실기간은 2개월입니다.</p>
     <div class="policy-banner">
       <div class="policy-coupon">
-        <span class="policy-kicker">NEW RESIDENT COUPON</span>
-        <strong>첫 달 5만원 할인</strong>
-        <span>3개월 이상 장기계약은 매달 적용</span>
+        <span class="policy-kicker">NEW RESIDENT DISCOUNT</span>
+        <strong>5만원 할인</strong>
       </div>
       <ul class="policy-conditions">
-        <li><strong>쿠폰 적용가</strong>첫 달 35~50만원</li>
+        <li><strong>매월 적용가</strong>월 35~50만원</li>
         <li><strong>보증금</strong>전 호실 30만원</li>
         <li><strong>세금</strong>표시 입실료에 부가세 별도</li>
-        <li><strong>장기계약 혜택</strong>3개월 이상이면 매달 5만원 쿠폰</li>
+        <li><strong>최소 입실기간</strong>2개월</li>
       </ul>
     </div>
     <div class="rate-card" aria-label="인천 학익점 2026년 9월 입실료">
       <div class="rate-card-head">
         <h3>인천 학익점 호실별 입실료</h3>
-        <p>정상가 → 첫 달 쿠폰 적용가</p>
+        <p>정상가 → 매월 할인 적용가</p>
       </div>
       <div class="rate-grid">
         <div class="rate-item">
@@ -128,54 +130,54 @@
         </div>
       </div>
     </div>
-    <p class="policy-legacy"><strong>기존 고객 안내:</strong> 2026년 8월까지 입실한 고객은 종전 혜택을 그대로 적용합니다. 9월 이후 신규 입실자는 첫 달 5만원 쿠폰을 받고, 3개월 이상 장기계약하면 매월 결제하는 경우에도 매달 쿠폰이 적용됩니다.</p>
+    <p class="policy-legacy"><strong>기존 고객 안내:</strong> 2026년 8월까지 입실한 고객은 종전 혜택을 그대로 적용합니다. 2026년 9월 이후 신규 입실자는 매월 5만원 할인과 최소 입실기간 2개월 조건이 적용됩니다.</p>
   </div>
 </section>
 
 <!-- ── 8대 강점 ────────────────────────────────────── -->
 <section class="features" id="features">
   <div class="section-inner">
-    <p class="section-eyebrow">Why Zone Stay</p>
-    <h2 class="section-title">고시원과 자취 사이,<br>더 나은 선택</h2>
-    <p class="section-sub">기숙사의 불편함도, 자취의 부담도 없이.<br>존스테이가 제공하는 8가지 이유.</p>
+    <p class="section-eyebrow">생활 조건</p>
+    <h2 class="section-title">개인 욕실부터 냉방까지,<br>18개 방의 기본 조건</h2>
+    <p class="section-sub">계약 전에 확인할 생활 조건을 여덟 가지로 정리했습니다.</p>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="feature-icon">🏆</div>
+        <div class="feature-icon" aria-hidden="true"></div>
         <div class="feature-title">호텔식 다크톤 인테리어</div>
         <div class="feature-desc">골드 간접조명이 이어지는 카펫 복도, 통일된 다크톤 도어. 복도부터 분위기가 다릅니다.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🚿</div>
+        <div class="feature-icon" aria-hidden="true"></div>
         <div class="feature-title">전 객실 개인 화장실</div>
         <div class="feature-desc">공용 욕실 대기 없이 나만의 욕실. 18개 전 호실에 개인 화장실·샤워 포함.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">❄️</div>
+        <div class="feature-icon" aria-hidden="true"></div>
         <div class="feature-title">전 객실 천장형 시스템에어컨</div>
         <div class="feature-desc">18개 전 호실에 천장 매립형 시스템에어컨. 벽걸이가 대부분인 여느 고시원과는 급이 다릅니다. 바람이 고르게 퍼지고 소음·결로가 적은 고급 냉방을 전 객실에 적용했습니다.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📋</div>
+        <div class="feature-icon" aria-hidden="true"></div>
         <div class="feature-title">관리비 포함 단일 월세</div>
         <div class="feature-desc">와이파이 · 수도 · 전기까지 월세 하나로. 계절마다 튀는 공과금 걱정 없음.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🚻</div>
+        <div class="feature-icon" aria-hidden="true"></div>
         <div class="feature-title">여성/남성 분리 입실</div>
         <div class="feature-desc">여성 구역과 남성 구역을 분리해 운영. 혼자 살아도 마음 놓이는 생활 환경.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🔐</div>
+        <div class="feature-icon" aria-hidden="true"></div>
         <div class="feature-title">디지털 도어락 2중 보안</div>
         <div class="feature-desc">건물 출입문과 각 객실 모두 디지털 도어락. 복도 CCTV까지, 늦게 귀가해도 안심.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">🫧</div>
+        <div class="feature-icon" aria-hidden="true"></div>
         <div class="feature-title">같은 층 무인 세탁실</div>
         <div class="feature-desc">복도 바로 옆 세탁실에 세탁기·건조기 완비. 빨래방을 따로 찾아갈 필요가 없습니다.</div>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">📺</div>
+        <div class="feature-icon" aria-hidden="true"></div>
         <div class="feature-title">풀옵션 가전 기본 제공</div>
         <div class="feature-desc">냉장고 · 벽걸이 TV · 전자레인지 · 시스템에어컨 기본. 조리는 인덕션을 갖춘 공용주방에서.</div>
       </div>
@@ -186,7 +188,7 @@
 <!-- ── 객실 ──────────────────────────────────────── -->
 <section class="rooms" id="rooms">
   <div class="section-inner">
-    <p class="section-eyebrow">Room Types</p>
+    <p class="section-eyebrow">객실 타입</p>
     <h2 class="section-title">세 가지 타입,<br>모두 개인 욕실</h2>
     <p class="section-sub">401호부터 418호까지 18개 호실. 창문 구성과 크기가 다를 뿐, 개인 욕실과 풀옵션은 전 타입 동일.</p>
   </div>
@@ -202,7 +204,7 @@
           <span class="room-badge badge-available">4개 호실 · 410–413호</span>
           <p class="room-type">Compact Room</p>
           <h3 class="room-name">작은방</h3>
-          <div class="room-price"><span data-price="compact.price">첫 달 35만원</span><span>/ 5만원 쿠폰 적용</span></div>
+          <div class="room-price"><span data-price="compact.price">월 35만원</span><span>/ 매월 5만원 할인</span></div>
           <div class="room-specs">
             <span class="spec-chip">소형 외창</span>
             <span class="spec-chip">개인 욕실·샤워</span>
@@ -212,7 +214,7 @@
           </div>
           <p class="room-fit">월 고정비를 가장 낮추고 싶은 분에게. 작지만 소형 외창으로 채광·환기가 되고, 개인 욕실과 풀옵션은 그대로인 실속 타입.</p>
           <ul class="room-points">
-            <li>410~413호 모두 정상가 40만원 → 첫 달 <span data-price="compact.low">35만원</span></li>
+            <li>410~413호 모두 정상가 40만원 → 할인 적용가 <span data-price="compact.low">35만원</span></li>
             <li>호실별 소형 외창 — 채광과 환기 확보 (사진: 410호)</li>
             <li>하부 서랍 수납 침대 + 냉장고·TV·전자레인지</li>
           </ul>
@@ -229,7 +231,7 @@
           <span class="room-badge badge-available">10개 호실 · 주력 타입</span>
           <p class="room-type">Standard Room</p>
           <h3 class="room-name">표준</h3>
-          <div class="room-price"><span data-price="standard.price">첫 달 35~45만원</span><span>/ 5만원 쿠폰 적용</span></div>
+          <div class="room-price"><span data-price="standard.price">월 35~45만원</span><span>/ 매월 5만원 할인</span></div>
           <div class="room-specs">
             <span class="spec-chip">중대형 외창 또는 내창</span>
             <span class="spec-chip">개인 욕실·샤워</span>
@@ -255,7 +257,7 @@
           <span class="room-badge badge-few">4개 호실 · 프리미엄</span>
           <p class="room-type">Large Room</p>
           <h3 class="room-name">큰방</h3>
-          <div class="room-price"><span data-price="large.price">첫 달 45~50만원</span><span>/ 5만원 쿠폰 적용</span></div>
+          <div class="room-price"><span data-price="large.price">월 45~50만원</span><span>/ 매월 5만원 할인</span></div>
           <div class="room-specs">
             <span class="spec-chip">대형 외창</span>
             <span class="spec-chip">개인 욕실·샤워</span>
@@ -291,7 +293,7 @@
           </thead>
           <tbody>
             <tr>
-              <td>첫 달 쿠폰가</td>
+              <td>매월 할인 적용가</td>
               <td class="td-gold" data-price="compact.table">35만원</td>
               <td class="td-gold" data-price="standard.table">35~45만원</td>
               <td class="td-gold" data-price="large.table">45~50만원</td>
@@ -342,7 +344,7 @@
 <!-- ── 포함 항목 ─────────────────────────────────── -->
 <section class="included" id="included">
   <div class="section-inner">
-    <p class="section-eyebrow">What's Included</p>
+    <p class="section-eyebrow">월 입실료 포함</p>
     <h2 class="section-title">월세에 이미 다 포함</h2>
     <p class="section-sub">별도 청구 없이, 월세 하나로 생활에 필요한 모든 것이 해결됩니다.</p>
     <div class="included-grid">
@@ -395,7 +397,7 @@
 <!-- ── 시설 갤러리 ────────────────────────────────── -->
 <section class="gallery" id="facilities">
   <div class="section-inner">
-    <p class="section-eyebrow">Facilities</p>
+    <p class="section-eyebrow">실제 공간</p>
     <h2 class="section-title">공간이 다릅니다</h2>
     <p class="section-sub">고급스러운 인테리어, 편의를 갖춘 시설. 직접 보면 압니다.</p>
     <div class="gallery-grid">
@@ -439,7 +441,7 @@
 <!-- ── 위치 ──────────────────────────────────────── -->
 <section class="location" id="location">
   <div class="section-inner">
-    <p class="section-eyebrow">Location</p>
+    <p class="section-eyebrow">주변 생활권</p>
     <h2 class="section-title">인천 법원 바로 옆,<br>주요 거점이 가깝다</h2>
     <p class="section-sub">인천 미추홀구의 주요 지점까지 도보·대중교통으로 빠르게 이동 가능.</p>
     <div class="location-layout">
@@ -491,16 +493,16 @@
 <!-- ── FAQ ───────────────────────────────────────── -->
 <section class="faq">
   <div class="section-inner">
-    <p class="section-eyebrow">FAQ</p>
+    <p class="section-eyebrow">계약 전 확인</p>
     <h2 class="section-title">계약 전에 많이 묻는 것들</h2>
     <div class="faq-list">
       <details class="faq-item">
         <summary>최소 계약 기간은 어떻게 되나요? <span class="faq-arrow">+</span></summary>
-        <div class="faq-body">최소 1개월부터 입주 가능합니다. 구체적인 계약 기간과 조건은 현재 공실 상황에 따라 카카오톡으로 먼저 확인해 주세요.</div>
+        <div class="faq-body">최소 입실기간은 2개월입니다. 구체적인 계약 기간과 조건은 현재 공실 상황에 따라 카카오톡으로 먼저 확인해 주세요.</div>
       </details>
       <details class="faq-item">
         <summary>보증금과 9월 입실료는 얼마인가요? <span class="faq-arrow">+</span></summary>
-        <div class="faq-body">보증금은 전 호실 30만원입니다. 2026년 9월 이후 신규 입실자는 첫 달 5만원 쿠폰 적용 시 호실에 따라 첫 달 35~50만원이며, 3개월 이상 장기계약하면 매월 결제하는 경우에도 매달 5만원 쿠폰이 적용됩니다. 표시 입실료에 부가세는 별도입니다.</div>
+        <div class="faq-body">보증금은 전 호실 30만원입니다. 2026년 9월 이후 신규 입실자는 매월 5만원 할인 적용 시 호실에 따라 월 35~50만원이며, 최소 입실기간은 2개월입니다. 표시 입실료에 부가세는 별도입니다.</div>
       </details>
       <details class="faq-item">
         <summary>현금영수증 발행되나요? <span class="faq-arrow">+</span></summary>
@@ -529,7 +531,7 @@
 <!-- ── 문의 ──────────────────────────────────────── -->
 <section class="inquiry" id="inquiry">
   <div class="inquiry-inner">
-    <p class="section-eyebrow" style="text-align:center">Contact</p>
+    <p class="section-eyebrow">입주 문의</p>
     <h2 class="inquiry-h2">마음에 드는 타입이 있다면<br>바로 연락 주세요</h2>
     <p class="inquiry-sub">공실 여부는 실시간으로 변동됩니다. 카카오톡으로 먼저 확인하는 게 가장 빠릅니다.</p>
     <ul class="inquiry-checklist">
@@ -538,8 +540,8 @@
       <li>월세와 보증금 총액 확인</li>
     </ul>
     <div class="inquiry-btns">
-      <a href="#inquiry" class="btn-kakao" data-kakao="incheon">💬 카카오톡으로 문의</a>
-      <a href="tel:0502-1929-2939" class="btn-insta" data-phone-link>📞 전화 <span data-phone>0502-1929-2939</span></a>
+      <a href="#inquiry" class="btn-kakao" data-kakao="incheon">카카오톡으로 문의</a>
+      <a href="tel:0502-1929-2939" class="btn-insta" data-phone-link>전화 <span data-phone>0502-1929-2939</span></a>
       <!-- 인스타그램 준비 중 — 오픈 시 아래 주석 해제
       <a href="https://www.instagram.com/zonestay.kr/" target="_blank" class="btn-insta">📷 인스타그램 DM</a>
       -->
@@ -548,6 +550,7 @@
   </div>
 </section>
 
+</main>
 <!-- ── 푸터 ──────────────────────────────────────── -->
 <footer>
   <div class="footer-inner">
@@ -568,10 +571,11 @@
 
 <!-- ── 플로팅 버튼 ────────────────────────────────── -->
 <button class="floating" data-kakao="incheon" onclick="document.getElementById('inquiry').scrollIntoView({behavior:'smooth'})">
-  💬 카카오톡 문의
+  카카오톡 문의
 </button>
 
-<script src="../static/js/config.js"></script>
+<script src="../static/js/config.js?v=20260903-monthly-1"></script>
 <script src="../static/js/page.js"></script>
+<script src="../static/js/nav-accessibility.js"></script>
 </body>
 </html>

@@ -9,7 +9,10 @@
 
 /* ── 리셋 · 베이스 ─────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scrollbar-gutter: stable; }  /* 스크롤바 유무와 무관하게 페이지 간 로고 x좌표 고정 */
+html {
+  scrollbar-gutter: stable;   /* 스크롤바 유무와 무관하게 페이지 간 로고 x좌표 고정 */
+  scroll-padding-top: 76px;   /* sticky 내비(64px+보더)에 앵커 점프 대상이 가리지 않게 */
+}
 body {
   font-family: 'Pretendard Variable', 'Pretendard', -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -72,7 +75,10 @@ body.rt-fade { opacity: 0; }
 .nav-cta:hover { background: var(--accent-br); transform: translateY(-1px); }
 .nav-ham {
   display: none; flex-direction: column; gap: 5px;
-  background: none; border: none; padding: 4px;
+  background: none; border: none;
+  /* 탭 타깃 44×44 확보 — 아이콘(22×16)은 유지, 히트 영역만 패딩으로 확장하고
+     음수 마진으로 내비 레이아웃 footprint(30×24)는 그대로 둔다 */
+  padding: 14px 11px; margin: -10px -7px;
 }
 .nav-ham span { display: block; width: 22px; height: 2px; background: var(--nav-fg); border-radius: 2px; }
 .nav-mobile {
@@ -110,9 +116,12 @@ body.rt-fade { opacity: 0; }
   border: none; border-radius: 100px;
   font-size: 14px; font-weight: 700;
   box-shadow: var(--accent-shadow);
-  transition: background .2s, transform .15s;
+  transition: background .2s, transform .15s, opacity .25s, visibility .25s;
 }
 .floating:hover { background: var(--accent-br); transform: translateY(-2px); }
+/* 히어로가 보이는 동안은 숨김(page.js가 토글) — 첫 화면에서 히어로 CTA를 가리지 않게.
+   JS 미동작 환경에서는 클래스가 안 붙으므로 항상 노출(점진적 향상). */
+.floating.at-hero { opacity: 0; visibility: hidden; pointer-events: none; }
 
 /* ── 내비 반응형 ───────────────────────────────── */
 @media (max-width: 768px) {

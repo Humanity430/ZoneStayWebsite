@@ -66,7 +66,10 @@
     var file = SLUG_TO_FILE[slug];
     if (file == null) return;
     var docURL = SITE_ROOT.href + file; // 이 문서의 절대 URL — 상대경로 해석 기준
-    docCache[slug] = fetch(docURL, { headers: { 'X-Requested-With': 'router' } })
+    docCache[slug] = fetch(docURL, {
+      cache: 'no-cache',
+      headers: { 'X-Requested-With': 'router' }
+    })
       .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
         return res.text();
@@ -171,6 +174,9 @@
   //   같은 상대경로가 새 위치 기준으로 올바르게 해석된다.
   function apply(doc, hash) {
     if (doc.title) document.title = doc.title;
+    var wasFading = document.body.classList.contains('rt-fade');
+    document.body.className = doc.body.className;
+    if (wasFading) document.body.classList.add('rt-fade');
     document.body.innerHTML = doc.body.innerHTML;
     pruneStyles(doc); // 새 CSS는 ensureStyles로 이미 로드됨 → 이제 옛 CSS 정리
     runScripts();
@@ -220,13 +226,25 @@
       .then(function () { navigating = false; });
   }
 
-  // ── 내부 링크 클릭 가로채기 (HTML·SVG 앵커 모두) ──
+  // Shadow DOM 링크는 event.target이 호스트로 retarget되므로 composedPath에서 찾는다.
+  // 일반 HTML·SVG 링크는 기존 closest 폴백으로 그대로 처리한다.
+  function anchorFromEvent(e, selector) {
+    selector = selector || 'a';
+    var path = e.composedPath ? e.composedPath() : [];
+    for (var i = 0; i < path.length; i += 1) {
+      var node = path[i];
+      if (node && node.matches && node.matches(selector)) return node;
+    }
+    var target = e.target;
+    return target && target.closest ? target.closest(selector) : null;
+  }
+
+  // ── 내부 링크 클릭 가로채기 (HTML·SVG·Web Component 앵커 모두) ──
   document.addEventListener('click', function (e) {
     if (e.defaultPrevented || e.button !== 0 ||
         e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
-    var el = e.target;
-    var a = el && el.closest ? el.closest('a') : null;
+    var a = anchorFromEvent(e, 'a');
     if (!a) return;
     if (a.target === '_blank' || a.hasAttribute('download')) return;
 
@@ -264,7 +282,7 @@
 
   // ── 호버/터치 시 프리페치: 클릭하기 전에 미리 받아둬서 클릭 순간 즉시 전환되게 ──
   document.addEventListener('mouseover', function (e) {
-    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    var a = anchorFromEvent(e, 'a[href]');
     if (!a) return;
     var raw = a.getAttribute('href');
     if (!raw) return;
@@ -274,7 +292,7 @@
     if (slug !== currentSlug()) prefetch(slug);
   }, { passive: true });
   document.addEventListener('touchstart', function (e) {
-    var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+    var a = anchorFromEvent(e, 'a[href]');
     if (!a) return;
     var raw = a.getAttribute('href');
     if (!raw) return;

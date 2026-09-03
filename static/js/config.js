@@ -31,25 +31,25 @@
         kakao: 'http://pf.kakao.com/_xehFxfX',
         address: '인천광역시 미추홀구 신세계빌딩 4층',
         prices: {
-          heroFrom: '첫 달 35만원부터',
-          // 2026-09 신규 입실자: 첫 달 5만원 쿠폰 적용가
-          // 3개월 이상 장기계약은 월별 결제에도 매달 같은 쿠폰 적용
-          compact:  { price: '첫 달 35만원',    table: '35만원',    low: '35만원', high: '35만원' },
-          standard: { price: '첫 달 35~45만원', table: '35~45만원', low: '35만원', high: '45만원' },
-          large:    { price: '첫 달 45~50만원', table: '45~50만원' }
+          heroFrom: '월 35만원부터',
+          // 2026-09 이후 신규 입실자: 매월 5만원 할인 적용가
+          // 최소 입실기간 2개월
+          compact:  { price: '월 35만원',    table: '35만원',    low: '35만원', high: '35만원' },
+          standard: { price: '월 35~45만원', table: '35~45만원', low: '35만원', high: '45만원' },
+          large:    { price: '월 45~50만원', table: '45~50만원' }
         }
       },
       siheung: {
         kakao: 'http://pf.kakao.com/_KqFxfX',
         address: '경기도 시흥시 월곶동 존스테이 원룸텔 4층',
         prices: {
-          heroFrom: '첫 달 35만원부터',
-          // 2026-09 신규 입실자: 첫 달 5만원 쿠폰 적용가
-          // 3개월 이상 장기계약은 월별 결제에도 매달 같은 쿠폰 적용
-          ocean: { price: '첫 달 50만원' },
-          suite: { price: '첫 달 60만원' },
-          twin:  { price: '첫 달 50만원' },
-          value: { price: '첫 달 35~40만원', low: '35만원', high: '40만원' }
+          heroFrom: '월 35만원부터',
+          // 2026-09 이후 신규 입실자: 매월 5만원 할인 적용가
+          // 최소 입실기간 2개월
+          ocean: { price: '월 50만원' },
+          suite: { price: '월 60만원' },
+          twin:  { price: '월 50만원' },
+          value: { price: '월 35~40만원', low: '35만원', high: '40만원' }
         }
       }
     }
